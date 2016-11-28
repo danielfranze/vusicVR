@@ -4,6 +4,8 @@ using createSphereIfPossible;
 
 public class createObject : MonoBehaviour
 {
+    public AudioClip audioClip;
+
     private Valve.VR.EVRButtonId triggerButton;
     private SteamVR_TrackedObject trackedObject;
     private SteamVR_Controller.Device controller;
@@ -55,7 +57,8 @@ public class createObject : MonoBehaviour
         actorSphere.GetComponent<SphereCollider>().radius = 0.65f;
         actorSphere.GetComponent<SphereCollider>().isTrigger = true;
         AudioSource audio = actorSphere.AddComponent<AudioSource>();
-        audio.clip = Resources.Load("HiHatOpen909") as AudioClip;
+        audio.clip = (AudioClip)Resources.Load("R_Wood");
+        actorSphere.AddComponent<playMusic>();
     }
 
 

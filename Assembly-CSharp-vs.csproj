@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\createObject.cs" />
-     <Compile Include="Assets\Scripts\movePoint.cs" />
-     <Compile Include="Assets\Scripts\triggerPlayMusic.cs" />
+     <Compile Include="Assets\Scripts\musicObject\createObject.cs" />
+     <Compile Include="Assets\Scripts\musicObject\createObjectIfPossible.cs" />
+     <Compile Include="Assets\Scripts\musicObject\movePointSensor.cs" />
+     <Compile Include="Assets\Scripts\musicObject\playMusic.cs" />
+     <Compile Include="Assets\Scripts\musicWall\movePoint.cs" />
+     <Compile Include="Assets\Scripts\musicWall\triggerPlayMusic.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
