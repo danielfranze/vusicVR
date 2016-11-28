@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/ersterVersuch.unity
+- path: Assets/Scene/musikObjekte.unity
   isLoaded: 1
   isActive: 1
