@@ -34,14 +34,14 @@ namespace createSphereIfPossible
             collision = false;
         }
 
-        void OnTriggerEnter(Collider col)
+        /*void OnTriggerEnter(Collider col)
         {
             if (col.gameObject.tag == "Sound1")
             {
                 Debug.Log("Fuuuuck");
                 //collision = true;
             }
-        }
+        }*/
 
         void OnTriggerStay(Collider col)
         {

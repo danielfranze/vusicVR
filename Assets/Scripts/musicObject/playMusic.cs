@@ -11,7 +11,6 @@ public class playMusic : MonoBehaviour
     {
         audio = GetComponents<AudioSource>()[0];
         mesh = GetComponents<MeshRenderer>()[0];
-        isActivate = false;
     }
 
     // Update is called once per frame
@@ -24,47 +23,60 @@ public class playMusic : MonoBehaviour
     {
         if (col.gameObject.tag == "Trigger")
         {
-            if (isActivate)
+
+
+            if (tag == "Sound0")
             {
-                audio.Play();
+                mesh.material.color = Color.yellow;    
             }
+
+            if (tag == "Sound1")
+            {
+                mesh.material.color = Color.yellow;
+            }
+
+            if (tag == "Sound2")
+            {
+                mesh.material.color = Color.yellow;
+            }
+
+            if (tag == "Sound3")
+            {
+                mesh.material.color = Color.yellow;
+            }
+
+            audio.Play();
+            // audio.loop = true;
+
         }
-        else
-        {
-            if (isActivate)
-            {
-                audio.Stop();
-                mesh.material.color = Color.white;
-                isActivate = false;
-            }
-            else
-            {
-                if (tag == "Zeile1")
-                {
-                    mesh.material.color = Color.red;
-                }
-
-                if (tag == "Zeile2")
-                {
-                    mesh.material.color = Color.green;
-                }
-
-                if (tag == "Zeile3")
-                {
-                    mesh.material.color = Color.blue;
-                }
-
-                if (tag == "Zeile4")
-                {
-                    mesh.material.color = Color.yellow;
-                }
-                // audio.Play();
-                // audio.loop = true;
-                isActivate = true;
-            }
-        }
-
-
     }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "Trigger")
+        {
+            if (tag == "Sound0")
+            {
+                mesh.material.color = Color.red;
+            }
+
+            if (tag == "Sound1")
+            {
+                mesh.material.color = Color.blue;
+            }
+
+            if (tag == "Sound2")
+            {
+                mesh.material.color = Color.green;
+            }
+
+            if (tag == "Sound3")
+            {
+                mesh.material.color = Color.black;
+            }
+
+        }
+    }
+
 
 }
