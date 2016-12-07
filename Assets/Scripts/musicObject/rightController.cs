@@ -13,9 +13,10 @@ public class rightController : MonoBehaviour
     private bool collision = false;
     private int fps = 0;
 
-    Color[] colorList = new Color[4];
-    AudioClip[] audioList = new AudioClip[4];
+    Material[] colorList = new Material[7];
+    AudioClip[] audioList = new AudioClip[7];
     int indexAudioList = 0;
+    int currentRotPos = 0;
 
     //private Collider col;
     //private SphereCollider sphereCollider;
@@ -33,11 +34,19 @@ public class rightController : MonoBehaviour
         audioList[1] = Resources.Load("R_Clap") as AudioClip;
         audioList[2] = Resources.Load("R_Hi-Hat") as AudioClip;
         audioList[3] = Resources.Load("R_Kick") as AudioClip;
+        audioList[4] = Resources.Load("Snare909_2") as AudioClip;
+        audioList[5] = Resources.Load("TomLow909_2") as AudioClip;
+        audioList[6] = Resources.Load("Melodie3_House2") as AudioClip;
 
-        colorList[0] = Color.red;
-        colorList[1] = Color.blue;
-        colorList[2] = Color.green;
-        colorList[3] = Color.black;
+        colorList[0] = Resources.Load("gelb") as Material;
+        colorList[1] = Resources.Load("magenta") as Material;
+        colorList[2] = Resources.Load("pink") as Material;
+        colorList[3] = Resources.Load("lila") as Material; 
+        colorList[4] = Resources.Load("rosa") as Material;
+        colorList[5] = Resources.Load("rot") as Material;
+        colorList[6] = Resources.Load("orange") as Material;
+
+
 
 
 
@@ -67,26 +76,56 @@ public class rightController : MonoBehaviour
             
             {
 
-                if (controller.GetAxis(touchPad).y > 0.5f)
+                if (controller.GetAxis(touchPad).x > 0.5f) //right
                 {
                     indexAudioList++;
                     if (indexAudioList == audioList.Length)
                     {
                         indexAudioList = 0;
                     }
+
+                    GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
+                    
+                    for (int i = 0; i < audioList.Length; i++)
+                    { 
+                        if (i == audioList.Length - 1)
+                        {
+                           GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
+                        }
+                        else
+                        {
+                            int k = i + 1;
+                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
+                        }      
+                    }
                 }
 
-                if (controller.GetAxis(touchPad).y < -0.5f)
+                if (controller.GetAxis(touchPad).x < -0.5f) //left
                 {
                     indexAudioList--;
                     if (indexAudioList < 0)
                     {
                         indexAudioList = audioList.Length - 1;
                     }
+
+                    GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot6").transform.position;
+
+                    for (int i = audioList.Length - 1; i > -1; i--)
+                    {
+                        if (i == 0)
+                        {
+                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
+                        }
+                        else
+                        {
+                            int k = i - 1;
+                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
+                        }
+                    }
                 }
             }
 
-            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material.color = colorList[indexAudioList];
+            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
             fps = 0;
         }
         //collision = false;
@@ -108,7 +147,7 @@ public class rightController : MonoBehaviour
         actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList];
 
         actorSphere.AddComponent<playMusic>();
-        actorSphere.GetComponent<MeshRenderer>().material.color = colorList[indexAudioList];
+        actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
         actorSphere.GetComponents<AudioSource>()[0].Play();
     }
 

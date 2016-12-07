@@ -27,22 +27,36 @@ public class playMusic : MonoBehaviour
 
             if (tag == "Sound0")
             {
-                mesh.material.color = Color.yellow;    
+                mesh.material = Resources.Load("spherePlay") as Material;
             }
 
             if (tag == "Sound1")
             {
-                mesh.material.color = Color.yellow;
+                mesh.material = Resources.Load("spherePlay") as Material;
             }
 
             if (tag == "Sound2")
             {
-                mesh.material.color = Color.yellow;
+                mesh.material = Resources.Load("spherePlay") as Material;
             }
 
             if (tag == "Sound3")
             {
-                mesh.material.color = Color.yellow;
+                mesh.material = Resources.Load("spherePlay") as Material;
+            }
+            if (tag == "Sound4")
+            {
+                mesh.material = Resources.Load("spherePlay") as Material;
+            }
+
+            if (tag == "Sound5")
+            {
+                mesh.material = Resources.Load("spherePlay") as Material;
+            }
+
+            if (tag == "Sound6")
+            {
+                mesh.material = Resources.Load("spherePlay") as Material;
             }
 
             audio.Play();
@@ -57,22 +71,37 @@ public class playMusic : MonoBehaviour
         {
             if (tag == "Sound0")
             {
-                mesh.material.color = Color.red;
+                mesh.material = Resources.Load("gelb") as Material;
             }
 
             if (tag == "Sound1")
             {
-                mesh.material.color = Color.blue;
+                mesh.material = Resources.Load("magenta") as Material;
             }
 
             if (tag == "Sound2")
             {
-                mesh.material.color = Color.green;
+                mesh.material = Resources.Load("pink") as Material;
             }
 
             if (tag == "Sound3")
             {
-                mesh.material.color = Color.black;
+                mesh.material = Resources.Load("lila") as Material;
+            }
+
+            if (tag == "Sound4")
+            {
+                mesh.material = Resources.Load("rosa") as Material;
+            }
+
+            if (tag == "Sound5")
+            {
+                mesh.material = Resources.Load("rot") as Material;
+            }
+
+            if (tag == "Sound6")
+            {
+                mesh.material = Resources.Load("orange") as Material;
             }
 
         }

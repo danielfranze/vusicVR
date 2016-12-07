@@ -26,14 +26,14 @@ public class leftController : MonoBehaviour
             if (movePointSensorNamespace.movePointSensor.speed >= 3f || movePointSensorNamespace.movePointSensor.speed <= -3f)
             {
                 Debug.Log("speed nicht ok");
-                
+
             }
-            if (controller.GetAxis(touchPad).y <= -0.5f)
+            if (controller.GetAxis(touchPad).y <= -0.5f && movePointSensorNamespace.movePointSensor.speed >= -4f)
             {
                 movePointSensorNamespace.movePointSensor.speed -= 0.2f;
             }
 
-            if (controller.GetAxis(touchPad).y >= 0.5f)
+            if (controller.GetAxis(touchPad).y >= 0.5f && movePointSensorNamespace.movePointSensor.speed <= 4f)
             {
                 movePointSensorNamespace.movePointSensor.speed += 0.2f;
             }
@@ -42,9 +42,6 @@ public class leftController : MonoBehaviour
             {
                 movePointSensorNamespace.movePointSensor.speed = 0;
             }
-
-
-
         }
     }
 }
