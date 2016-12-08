@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\musicObject\movePointSensor.cs" />
     <Compile Include="Assets\Scripts\musicObject\playMusic.cs" />
     <Compile Include="Assets\Scripts\musicObject\rightController.cs" />
+    <Compile Include="Assets\Scripts\musicObject\sphereDestroy.cs" />
     <Compile Include="Assets\Scripts\musicWall\movePoint.cs" />
     <Compile Include="Assets\Scripts\musicWall\triggerPlayMusic.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />

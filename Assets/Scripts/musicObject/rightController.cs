@@ -15,8 +15,14 @@ public class rightController : MonoBehaviour
 
     Material[] colorList = new Material[7];
     AudioClip[] audioList = new AudioClip[7];
+    public GameObject[] possibilityList = new GameObject[2];
+    int possibilityCounter = 0;
+    public GameObject sphereDestroyer;
+    public GameObject colorCircle1;
+    public GameObject controllerSphere;
     int indexAudioList = 0;
     int currentRotPos = 0;
+    bool boole = true;
 
     //private Collider col;
     //private SphereCollider sphereCollider;
@@ -24,6 +30,7 @@ public class rightController : MonoBehaviour
     //Use this for initialization
     void Start()
     {
+
 
         triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
         touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
@@ -46,13 +53,19 @@ public class rightController : MonoBehaviour
         colorList[5] = Resources.Load("rot") as Material;
         colorList[6] = Resources.Load("orange") as Material;
 
+        sphereDestroyer = GameObject.Find("sphereDestroyer");
+        controllerSphere = GameObject.Find("controllerSphere");
+        colorCircle1 = GameObject.Find("colorCircle1");
+
+        possibilityList[0] = colorCircle1;
+        possibilityList[1] = sphereDestroyer;
+
+        colorCircle1.SetActive(true);
+        sphereDestroyer.SetActive(true);
+        controllerSphere.SetActive(true);
 
 
 
-
-        //createSphereIsPossible = true;
-        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-        //collision = false;
 
     }
 
@@ -60,7 +73,11 @@ public class rightController : MonoBehaviour
     void Update()
     {
         // Exception
-
+        if(boole)
+        {
+            sphereDestroyer.SetActive(false);
+            boole = false;
+        }
         controller = SteamVR_Controller.Input((int)trackedObject.index);
 
         if (controller.GetPress(triggerButton) && createSphereIfPossible.createObjectIfPossible.createSphereIsPossible && !createSphereIfPossible.createObjectIfPossible.collision)
@@ -78,6 +95,7 @@ public class rightController : MonoBehaviour
 
                 if (controller.GetAxis(touchPad).x > 0.5f) //right
                 {
+                    Debug.Log("falsch");
                     indexAudioList++;
                     if (indexAudioList == audioList.Length)
                     {
@@ -102,6 +120,7 @@ public class rightController : MonoBehaviour
 
                 if (controller.GetAxis(touchPad).x < -0.5f) //left
                 {
+                    Debug.Log("falsch");
                     indexAudioList--;
                     if (indexAudioList < 0)
                     {
@@ -123,6 +142,76 @@ public class rightController : MonoBehaviour
                         }
                     }
                 }
+
+
+
+
+                if (controller.GetAxis(touchPad).y > 0.5f) //up
+                {
+                    Debug.Log("hallo");
+                    possibilityCounter++;
+
+                    if (possibilityCounter > possibilityList.Length - 1)
+                    {
+                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                        possibilityList[possibilityCounter - 1].SetActive(false);
+                        possibilityCounter = 0;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        //controllerSphere.SetActive(true);
+                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+
+                        Debug.Log("poss = 0");
+                    }
+                    else
+                    {
+                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = false;
+                        controllerSphere.GetComponent<SphereCollider>().enabled = false;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        possibilityList[possibilityCounter - 1].SetActive(false);
+                        //controllerSphere.SetActive(false);
+
+
+                        Debug.Log("poss = 1");
+                    }
+
+
+                }
+
+
+
+                if (controller.GetAxis(touchPad).y < -0.5f) //down
+                {
+                    possibilityCounter--;
+                    if (possibilityCounter < 0)
+                    {
+                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = false;
+                        controllerSphere.GetComponent<SphereCollider>().enabled = false;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                        possibilityList[possibilityCounter + 1].SetActive(false);
+                        possibilityCounter = possibilityList.Length - 1;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        //controllerSphere.SetActive(true);
+
+
+                        Debug.Log("poss = 0");
+                    }
+                    else
+                    {
+
+                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        possibilityList[possibilityCounter + 1].SetActive(false);
+                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                        //controllerSphere.SetActive(false);
+
+
+                        Debug.Log("poss = 1");
+                    }
+
+                }
             }
 
             GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
@@ -140,6 +229,7 @@ public class rightController : MonoBehaviour
         actorSphere.AddComponent<Rigidbody>();
         actorSphere.GetComponent<Rigidbody>().useGravity = false;
         actorSphere.GetComponent<Rigidbody>().isKinematic = true;
+        actorSphere.name = "musicSphere";
         actorSphere.tag = "Sound" + indexAudioList;
         actorSphere.GetComponent<SphereCollider>().radius = 0.65f;
         actorSphere.GetComponent<SphereCollider>().isTrigger = true;
