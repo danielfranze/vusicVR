@@ -7,11 +7,12 @@ namespace createSphereIfPossible
     {
         public static bool createSphereIsPossible;
         public static bool collision;
+
         // Use this for initialization
         void Start()
         {
             createSphereIsPossible = true;
-
+            collision = false;
         }
 
         // Update is called once per frame
@@ -23,27 +24,11 @@ namespace createSphereIfPossible
         void OnTriggerExit()
         {
             createSphereIsPossible = true;
-            //collision = false;
-            /*
-            if (controller.GetPress(triggerButton))
-            {
-                createSphere();
-
-            }
-            */
             collision = false;
         }
 
-        /*void OnTriggerEnter(Collider col)
-        {
-            if (col.gameObject.tag == "Sound1")
-            {
-                Debug.Log("Fuuuuck");
-                //collision = true;
-            }
-        }*/
 
-        void OnTriggerStay(Collider col)
+        void OnTriggerStay()
         {
             collision = true;
         }

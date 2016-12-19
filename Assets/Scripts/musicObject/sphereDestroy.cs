@@ -14,9 +14,17 @@ public class sphereDestroy : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Funktioniert!");
-        if(col.gameObject.name == "musicSphere")
+        if(col.gameObject.tag == "musicSphere" && main.rightController.trigger == true)
         {
+            main.rightController.controller.TriggerHapticPulse(1000);
+            Destroy(col.gameObject);
+        }
+    }
+    void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.tag == "musicSphere" && main.rightController.trigger == true)
+        {
+            main.rightController.controller.TriggerHapticPulse(1000);
             Destroy(col.gameObject);
         }
     }

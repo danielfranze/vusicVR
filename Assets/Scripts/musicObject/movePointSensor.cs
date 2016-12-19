@@ -1,60 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 namespace movePointSensorNamespace
 {
     public class movePointSensor : MonoBehaviour
     {
         public static float speed;
-        Vector3 targetPos;
-        Vector3 start;
-        Vector3 spawn;
+
+        private Transform[] sensorPoints;
+        private int currentPoint;
+
         // Use this for initialization
         void Start()
         {
-            speed = 0;
-            targetPos = GameObject.FindGameObjectWithTag("Target").transform.position;
-            start = GameObject.FindGameObjectWithTag("Start").transform.position;
-            spawn.x = 1.2f;
-            spawn.y = 0;
-            spawn.z = 0;
+            // Global
+            speed = 0f;
 
+
+            // Lokal
+            sensorPoints = new Transform[16];
+            foreach (int index in Enumerable.Range(0, 16))
+            {
+                sensorPoints[index] = GameObject.Find("Zylinder" + index).transform;
+            }
+            transform.position = sensorPoints[0].position;
         }
 
         // Update is called once per frame
         void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-            /*if (transform.position == targetPos)
-                {
-                    transform.position = start + spawn;
-                }
-                else
-                {
-                    Debug.Log("speed: " + speed);
-                    transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-
-                if (transform.position == start)
-                {
-                    Debug.Log("target1Pos !!!!!!!!!!!");
-                    transform.position = targetPos - spawn;
-                }
-            }*/
-
-        }
-
-        void OnTriggerEnter(Collider col)
-        {
-            if (col.gameObject.tag == "Target")
+            if (transform.position == sensorPoints[currentPoint].position)
             {
-                Debug.Log("col target");
-                transform.position = start - spawn;
+                currentPoint++;
             }
-            if (col.gameObject.tag == "Start")
+
+            if (currentPoint >= sensorPoints.Length)
             {
-                Debug.Log("col start");
-                transform.position = targetPos + spawn;
+                currentPoint = 0;
             }
+
+            transform.position = Vector3.MoveTowards(transform.position, sensorPoints[currentPoint]
+                                                     .position, speed * Time.deltaTime);
         }
     }
 }

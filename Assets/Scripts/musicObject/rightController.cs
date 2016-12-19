@@ -1,101 +1,224 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-public class rightController : MonoBehaviour
+namespace main
 {
-    public AudioClip audioClip;
-
-    private Valve.VR.EVRButtonId triggerButton;
-    private Valve.VR.EVRButtonId touchPad;
-
-    private SteamVR_TrackedObject trackedObject;
-    private SteamVR_Controller.Device controller;
-    private GameObject actorSphere;
-    private bool collision = false;
-    private int fps = 0;
-
-    Material[] colorList = new Material[7];
-    AudioClip[] audioList = new AudioClip[7];
-    public GameObject[] possibilityList = new GameObject[2];
-    int possibilityCounter = 0;
-    public GameObject sphereDestroyer;
-    public GameObject colorCircle1;
-    public GameObject controllerSphere;
-    int indexAudioList = 0;
-    int currentRotPos = 0;
-    bool boole = true;
-
-    //private Collider col;
-    //private SphereCollider sphereCollider;
-
-    //Use this for initialization
-    void Start()
+    public class rightController : MonoBehaviour
     {
 
 
-        triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
-        touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
+        private SteamVR_TrackedObject trackedObject;
+        public static SteamVR_Controller.Device controller;
 
-        trackedObject = GetComponent<SteamVR_TrackedObject>();
+        //event
+        public SteamVR_TrackedController device;
 
-        audioList[0] = Resources.Load("Crash909") as AudioClip;
-        audioList[1] = Resources.Load("R_Clap") as AudioClip;
-        audioList[2] = Resources.Load("R_Hi-Hat") as AudioClip;
-        audioList[3] = Resources.Load("R_Kick") as AudioClip;
-        audioList[4] = Resources.Load("Snare909_2") as AudioClip;
-        audioList[5] = Resources.Load("TomLow909_2") as AudioClip;
-        audioList[6] = Resources.Load("Melodie3_House2") as AudioClip;
-
-        colorList[0] = Resources.Load("gelb") as Material;
-        colorList[1] = Resources.Load("magenta") as Material;
-        colorList[2] = Resources.Load("pink") as Material;
-        colorList[3] = Resources.Load("lila") as Material; 
-        colorList[4] = Resources.Load("rosa") as Material;
-        colorList[5] = Resources.Load("rot") as Material;
-        colorList[6] = Resources.Load("orange") as Material;
-
-        sphereDestroyer = GameObject.Find("sphereDestroyer");
-        controllerSphere = GameObject.Find("controllerSphere");
-        colorCircle1 = GameObject.Find("colorCircle1");
-
-        possibilityList[0] = colorCircle1;
-        possibilityList[1] = sphereDestroyer;
-
-        colorCircle1.SetActive(true);
-        sphereDestroyer.SetActive(true);
-        controllerSphere.SetActive(true);
+        private Valve.VR.EVRButtonId triggerButton;
+        private Valve.VR.EVRButtonId touchPad;
 
 
 
 
-    }
+        private GameObject actorSphere;
+        private bool collision = false;
+        private int currentColorCircle = 0;
 
-    //Update is called once per frame
-    void Update()
-    {
-        // Exception
-        if(boole)
+        Material[] colorList;
+        Material[] colorList1 = new Material[7];
+        Material[] colorList2 = new Material[7];
+
+        AudioClip[] audioList = new AudioClip[7];
+        AudioClip[] audioList1 = new AudioClip[7];
+        AudioClip[] audioList2 = new AudioClip[7];
+
+        public GameObject colorCircle;
+        public GameObject colorCircle1;
+        public GameObject colorCircle2;
+
+        int indexAudioList = 0;
+        int indexAudioList1 = 0;
+        int indexAudioList2 = 0;
+
+        public GameObject[] possibilityList = new GameObject[3];
+        int possibilityCounter = 0;
+        public GameObject sphereDestroyer;  
+        public GameObject controllerSphere;
+
+        public static bool trigger = false;
+
+        //private Collider col;
+        //private SphereCollider sphereCollider;
+
+        //Use this for initialization
+        void Start()
         {
-            sphereDestroyer.SetActive(false);
-            boole = false;
-        }
-        controller = SteamVR_Controller.Input((int)trackedObject.index);
+            trackedObject = GetComponent<SteamVR_TrackedObject>();
+            controller = SteamVR_Controller.Input((int)trackedObject.index);
 
-        if (controller.GetPress(triggerButton) && createSphereIfPossible.createObjectIfPossible.createSphereIsPossible && !createSphereIfPossible.createObjectIfPossible.collision)
-        {
-            createSphere();
-            createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = false;
-        }
+            //event
+            device = GetComponent<SteamVR_TrackedController>();
+            device.PadClicked += PadClicked;
 
-        fps++;
-        if (fps == 15)
-        {
-            if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
+            touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
+
+
+
+            audioList1[0] = Resources.Load("R_Kick") as AudioClip;
+            audioList1[1] = Resources.Load("HiHatOpen909") as AudioClip;
+            audioList1[2] = Resources.Load("TomHi909") as AudioClip;
+            audioList1[3] = Resources.Load("TomMid909") as AudioClip;
+            audioList1[4] = Resources.Load("Rim909") as AudioClip;
+            audioList1[5] = Resources.Load("Clap909") as AudioClip;
+            audioList1[6] = Resources.Load("Kick909_2") as AudioClip;
+
+            audioList2[0] = Resources.Load("R_Kick") as AudioClip;
+            audioList2[1] = Resources.Load("HiHatOpen909") as AudioClip;
+            audioList2[2] = Resources.Load("TomHi909") as AudioClip;
+            audioList2[3] = Resources.Load("TomMid909") as AudioClip;
+            audioList2[4] = Resources.Load("Rim909") as AudioClip;
+            audioList2[5] = Resources.Load("Clap909") as AudioClip;
+            audioList2[6] = Resources.Load("Kick909_2") as AudioClip;
+
+            colorList1[0] = Resources.Load("1lila") as Material;
+            colorList1[1] = Resources.Load("1rot") as Material;
+            colorList1[2] = Resources.Load("1rosa") as Material;
+            colorList1[3] = Resources.Load("1pink") as Material;
+            colorList1[4] = Resources.Load("1orangegelb") as Material;
+            colorList1[5] = Resources.Load("1orange") as Material;
+            colorList1[6] = Resources.Load("1lilapink") as Material;
+
+            colorList2[0] = Resources.Load("2blau") as Material;
+            colorList2[1] = Resources.Load("2türkies") as Material;
+            colorList2[2] = Resources.Load("2hellgelb") as Material;
+            colorList2[3] = Resources.Load("2hellblau") as Material;
+            colorList2[4] = Resources.Load("2grün") as Material;
+            colorList2[5] = Resources.Load("2gelbgrün") as Material;
+            colorList2[6] = Resources.Load("2gelb") as Material;
+
+
+
+            sphereDestroyer = GameObject.Find("sphereDestroyer");
+            controllerSphere = GameObject.Find("controllerSphere");
+            colorCircle1 = GameObject.Find("colorCircle1");
+            colorCircle2 = GameObject.Find("colorCircle2");
+
+            possibilityList[0] = colorCircle1;
+            possibilityList[1] = colorCircle2;
+            possibilityList[2] = sphereDestroyer;
             
+            colorCircle = colorCircle1;
+            colorList = colorList1;
+            audioList = audioList2;
+
+            colorCircle1.SetActive(true);
+            controllerSphere.SetActive(true);
+
+            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+
+            sphereDestroyer.SetActive(false);
+            colorCircle2.SetActive(false);
+
+        }
+
+        //Update is called once per frame
+        void Update()
+        {
+            //var trackedObject = GetComponentInParent<SteamVR_TrackedObject>();
+
+
+            // Bug Fix Destroyer
+            if (controller.GetPress(triggerButton))
+            {
+                trigger = true;
+            }
+            else
+            {
+                trigger = false;
+            }
+
+            if (controller.GetPress(triggerButton) && !createSphereIfPossible.sphereIsOnGrid.collision && createSphereIfPossible.sphereIsOnGrid.sphereOnGrid)
+            {
+                controller.TriggerHapticPulse(1000);
+                createSphere();
+                createSphereIfPossible.sphereIsOnGrid.sphereCreater = false;
+            }
+
+
+        }
+
+
+
+        void createSphere()
+        {
+            Debug.Log(audioList[0]);
+            actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+            actorSphere.transform.position = new Vector3(createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[0], GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1], createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[2]);
+
+            actorSphere.AddComponent<Rigidbody>();
+            actorSphere.GetComponent<Rigidbody>().useGravity = false;
+            actorSphere.GetComponent<Rigidbody>().isKinematic = true;
+            actorSphere.name = "Sound" + indexAudioList + currentColorCircle; 
+            actorSphere.tag = "musicSphere";
+            actorSphere.GetComponent<SphereCollider>().radius = 1f;
+            actorSphere.GetComponent<SphereCollider>().isTrigger = true;
+            actorSphere.AddComponent<AudioSource>();
+            actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList];
+
+            actorSphere.AddComponent<playMusic>();
+            actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+            actorSphere.GetComponents<AudioSource>()[0].Play();
+        }
+
+        void switchCircle()
+        {
+            if (GameObject.Find("colorCircle1"))
+            {
+                currentColorCircle = 0;
+                colorCircle = colorCircle1;
+                colorList = colorList1;
+                audioList = audioList1;
+                indexAudioList = indexAudioList1;
+
+            }
+            if (GameObject.Find("colorCircle2"))
+            {
+                currentColorCircle = 1;
+                colorCircle = colorCircle2;
+                colorList = colorList2;
+                audioList = audioList2;
+                indexAudioList = indexAudioList2;
+            }
+        }
+
+        void saveCircle()
+        {
+            if (GameObject.Find("colorCircle1"))
+            {
+                colorCircle1 = colorCircle;
+                colorList1 = colorList;
+                indexAudioList1 = indexAudioList;
+
+            }
+            if (GameObject.Find("colorCircle2"))
+            {
+                colorCircle2 = colorCircle;
+                colorList2 = colorList;
+                indexAudioList2 = indexAudioList;
+            }
+        }
+
+        void PadClicked(object sender, ClickedEventArgs e)
+
+        {
+
+            if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+
             {
 
                 if (controller.GetAxis(touchPad).x > 0.5f) //right
                 {
-                    Debug.Log("falsch");
                     indexAudioList++;
                     if (indexAudioList == audioList.Length)
                     {
@@ -103,24 +226,23 @@ public class rightController : MonoBehaviour
                     }
 
                     GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
-                    
+
                     for (int i = 0; i < audioList.Length; i++)
-                    { 
+                    {
                         if (i == audioList.Length - 1)
                         {
-                           GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
+                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
                         }
                         else
                         {
                             int k = i + 1;
                             GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
-                        }      
+                        }
                     }
                 }
 
                 if (controller.GetAxis(touchPad).x < -0.5f) //left
                 {
-                    Debug.Log("falsch");
                     indexAudioList--;
                     if (indexAudioList < 0)
                     {
@@ -146,36 +268,44 @@ public class rightController : MonoBehaviour
 
 
 
-                if (controller.GetAxis(touchPad).y > 0.5f) //up
+                if (controller.GetAxis(touchPad).y > 0.5f) //up 
                 {
-                    Debug.Log("hallo");
+                    saveCircle();
+                    
                     possibilityCounter++;
 
-                    if (possibilityCounter > possibilityList.Length - 1)
+                    if(possibilityCounter == possibilityList.Length)
+                    {
+                        possibilityCounter = 0;
+                    }
+
+                    if(possibilityCounter == 0)
                     {
                         controllerSphere.GetComponent<SphereCollider>().enabled = true;
                         controllerSphere.GetComponent<MeshRenderer>().enabled = true;
-                        possibilityList[possibilityCounter - 1].SetActive(false);
-                        possibilityCounter = 0;
                         possibilityList[possibilityCounter].SetActive(true);
-                        //controllerSphere.SetActive(true);
-                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-
-                        Debug.Log("poss = 0");
+                        possibilityList[possibilityList.Length - 1].SetActive(false);
+                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                     }
-                    else
+                    if(possibilityCounter == 1)
                     {
-                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = false;
+                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        possibilityList[possibilityCounter - 1].SetActive(false);
+                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                    }
+
+                    if(possibilityCounter == 2)
+                    {
+                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                        //createSphereIfPossible.createObjectIfPossible.collision = false;
                         controllerSphere.GetComponent<SphereCollider>().enabled = false;
                         controllerSphere.GetComponent<MeshRenderer>().enabled = false;
                         possibilityList[possibilityCounter].SetActive(true);
                         possibilityList[possibilityCounter - 1].SetActive(false);
-                        //controllerSphere.SetActive(false);
-
-
-                        Debug.Log("poss = 1");
                     }
-
+                    switchCircle();
 
                 }
 
@@ -183,63 +313,47 @@ public class rightController : MonoBehaviour
 
                 if (controller.GetAxis(touchPad).y < -0.5f) //down
                 {
+                    saveCircle();
+                    
                     possibilityCounter--;
+
                     if (possibilityCounter < 0)
                     {
-                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = false;
-                        controllerSphere.GetComponent<SphereCollider>().enabled = false;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = false;
-                        possibilityList[possibilityCounter + 1].SetActive(false);
                         possibilityCounter = possibilityList.Length - 1;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        //controllerSphere.SetActive(true);
-
-
-                        Debug.Log("poss = 0");
                     }
-                    else
-                    {
 
+                    if (possibilityCounter == 0)
+                    {
                         controllerSphere.GetComponent<SphereCollider>().enabled = true;
                         controllerSphere.GetComponent<MeshRenderer>().enabled = true;
                         possibilityList[possibilityCounter].SetActive(true);
                         possibilityList[possibilityCounter + 1].SetActive(false);
-                        createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                        //controllerSphere.SetActive(false);
-
-
-                        Debug.Log("poss = 1");
+                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                    }
+                    if (possibilityCounter == 1)
+                    {
+                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        possibilityList[possibilityCounter + 1].SetActive(false);
+                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                     }
 
+                    if (possibilityCounter == 2)
+                    {
+                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                       // createSphereIfPossible.createObjectIfPossible.collision = false;
+                        controllerSphere.GetComponent<SphereCollider>().enabled = false;
+                        controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                        possibilityList[possibilityCounter].SetActive(true);
+                        possibilityList[0].SetActive(false);
+                    }
+                    switchCircle();
                 }
             }
 
             GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
-            fps = 0;
+
         }
-        //collision = false;
     }
-
-    void createSphere()
-    {
-        actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        actorSphere.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        actorSphere.transform.position = GameObject.FindGameObjectWithTag("ControllerSphere").transform.position;
-
-        actorSphere.AddComponent<Rigidbody>();
-        actorSphere.GetComponent<Rigidbody>().useGravity = false;
-        actorSphere.GetComponent<Rigidbody>().isKinematic = true;
-        actorSphere.name = "musicSphere";
-        actorSphere.tag = "Sound" + indexAudioList;
-        actorSphere.GetComponent<SphereCollider>().radius = 0.65f;
-        actorSphere.GetComponent<SphereCollider>().isTrigger = true;
-        actorSphere.AddComponent<AudioSource>();
-        actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList];
-
-        actorSphere.AddComponent<playMusic>();
-        actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
-        actorSphere.GetComponents<AudioSource>()[0].Play();
-    }
-
-
 }

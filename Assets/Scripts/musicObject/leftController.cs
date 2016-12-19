@@ -7,7 +7,6 @@ public class leftController : MonoBehaviour
     private SteamVR_Controller.Device controller;
     private Valve.VR.EVRButtonId touchPad;
     private SteamVR_TrackedObject trackedObject;
-    private int fps = 0;
 
     // Use this for initialization
     void Start () {
@@ -30,12 +29,14 @@ public class leftController : MonoBehaviour
             }
             if (controller.GetAxis(touchPad).y <= -0.5f && movePointSensorNamespace.movePointSensor.speed >= -4f)
             {
-                movePointSensorNamespace.movePointSensor.speed -= 0.2f;
+                movePointSensorNamespace.movePointSensor.speed -= 0.1f;
+                Debug.Log(movePointSensorNamespace.movePointSensor.speed);
             }
 
             if (controller.GetAxis(touchPad).y >= 0.5f && movePointSensorNamespace.movePointSensor.speed <= 4f)
             {
-                movePointSensorNamespace.movePointSensor.speed += 0.2f;
+                movePointSensorNamespace.movePointSensor.speed += 0.1f;
+
             }
 
             if (controller.GetAxis(touchPad).y < 0.5f && controller.GetAxis(touchPad).y > -0.5f)
