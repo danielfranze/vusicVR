@@ -2,12 +2,20 @@
 using System.Collections;
 
 public class movePoint : MonoBehaviour {
+
     public float speed;
-    Vector3 targetPos;
-    Vector3 startPos;
+
+    private Vector3 targetPos;
+    private Vector3 startPos;
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        // Global
         speed = 1f;
+
+
+        // Lokal
         targetPos = GameObject.FindGameObjectWithTag("Target").transform.position;
         startPos = GameObject.FindGameObjectWithTag("Trigger").transform.position;
     }

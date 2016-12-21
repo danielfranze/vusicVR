@@ -6,7 +6,6 @@ namespace main
     public class rightController : MonoBehaviour
     {
 
-
         private SteamVR_TrackedObject trackedObject;
         public static SteamVR_Controller.Device controller;
 
@@ -16,31 +15,29 @@ namespace main
         private Valve.VR.EVRButtonId triggerButton;
         private Valve.VR.EVRButtonId touchPad;
 
-
-
-
         private GameObject actorSphere;
-        private bool collision = false;
+        //private bool collision = false;
         private int currentColorCircle = 0;
 
-        Material[] colorList;
-        Material[] colorList1 = new Material[7];
-        Material[] colorList2 = new Material[7];
+        private Material[] colorList;
+        private Material[] colorList1 = new Material[7];
+        private Material[] colorList2 = new Material[7];
 
-        AudioClip[] audioList = new AudioClip[7];
-        AudioClip[] audioList1 = new AudioClip[7];
-        AudioClip[] audioList2 = new AudioClip[7];
+        private AudioClip[] audioList = new AudioClip[7];
+        private AudioClip[] audioList1 = new AudioClip[7];
+        private AudioClip[] audioList2 = new AudioClip[7];
 
         public GameObject colorCircle;
         public GameObject colorCircle1;
         public GameObject colorCircle2;
 
-        int indexAudioList = 0;
-        int indexAudioList1 = 0;
-        int indexAudioList2 = 0;
+        private int indexAudioList = 0;
+        private int indexAudioList1 = 0;
+        private int indexAudioList2 = 0;
+
+        private int possibilityCounter = 0;
 
         public GameObject[] possibilityList = new GameObject[3];
-        int possibilityCounter = 0;
         public GameObject sphereDestroyer;  
         public GameObject controllerSphere;
 
@@ -52,17 +49,20 @@ namespace main
         //Use this for initialization
         void Start()
         {
+            // Lokal
             trackedObject = GetComponent<SteamVR_TrackedObject>();
-            controller = SteamVR_Controller.Input((int)trackedObject.index);
 
-            //event
+
+            // Global
+            controller = SteamVR_Controller.Input((int)trackedObject.index);
+            // Global // event
             device = GetComponent<SteamVR_TrackedController>();
             device.PadClicked += PadClicked;
 
+
+            // Lokal
             triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
             touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
-
-
 
             audioList1[0] = Resources.Load("R_Kick") as AudioClip;
             audioList1[1] = Resources.Load("HiHatOpen909") as AudioClip;
@@ -97,7 +97,7 @@ namespace main
             colorList2[6] = Resources.Load("2gelb") as Material;
 
 
-
+            // Global
             sphereDestroyer = GameObject.Find("sphereDestroyer");
             controllerSphere = GameObject.Find("controllerSphere");
             colorCircle1 = GameObject.Find("colorCircle1");
@@ -113,7 +113,7 @@ namespace main
 
             colorCircle1.SetActive(true);
             controllerSphere.SetActive(true);
-
+   
             GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
 
             sphereDestroyer.SetActive(false);
@@ -148,13 +148,14 @@ namespace main
         }
 
 
-
         void createSphere()
         {
-            Debug.Log(audioList[0]);
+            //Debug.Log(audioList[0]);
             actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-            actorSphere.transform.position = new Vector3(createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[0], GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1], createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[2]);
+            actorSphere.transform.position = new Vector3(createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[0], 
+                                                         GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1], 
+                                                         createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[2]);
 
             actorSphere.AddComponent<Rigidbody>();
             actorSphere.GetComponent<Rigidbody>().useGravity = false;
@@ -170,6 +171,7 @@ namespace main
             actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
             actorSphere.GetComponents<AudioSource>()[0].Play();
         }
+
 
         void switchCircle()
         {
@@ -192,6 +194,7 @@ namespace main
             }
         }
 
+
         void saveCircle()
         {
             if (GameObject.Find("colorCircle1"))
@@ -209,151 +212,155 @@ namespace main
             }
         }
 
+
         void PadClicked(object sender, ClickedEventArgs e)
 
         {
 
-            if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
-
-            {
-
-                if (controller.GetAxis(touchPad).x > 0.5f) //right
+                if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
                 {
-                    indexAudioList++;
-                    if (indexAudioList == audioList.Length)
+
+                    if (controller.GetAxis(touchPad).x > 0.5f && (sphereDestroyer.gameObject.activeSelf == false)) //right
                     {
-                        indexAudioList = 0;
+                        indexAudioList++;
+                        if (indexAudioList == audioList.Length)
+                        {
+                            indexAudioList = 0;
+                        }
+
+                        // Error: NullReferenceException: Object reference not set to an instance of an object
+                        GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
+
+                        for (int i = 0; i < audioList.Length; i++)
+                        {
+                            if (i == audioList.Length - 1)
+                            {
+                                GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
+                            }
+                            else
+                            {
+                                int k = i + 1;
+                                GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
+                            }
+                        }
                     }
 
-                    GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
-
-                    for (int i = 0; i < audioList.Length; i++)
+                    if (controller.GetAxis(touchPad).x < -0.5f && (sphereDestroyer.gameObject.activeSelf == false)) //left
                     {
-                        if (i == audioList.Length - 1)
+                        indexAudioList--;
+                        if (indexAudioList < 0)
                         {
-                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
+                            indexAudioList = audioList.Length - 1;
                         }
-                        else
+
+                        GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot6").transform.position;
+
+                        for (int i = audioList.Length - 1; i > -1; i--)
                         {
-                            int k = i + 1;
-                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
+                            if (i == 0)
+                            {
+                                GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
+                            }
+                            else
+                            {
+                                int k = i - 1;
+                                GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
+                            }
                         }
+                    }
+
+
+                    if (controller.GetAxis(touchPad).y > 0.5f) //up 
+                    {
+                        saveCircle();
+
+                        possibilityCounter++;
+
+                        if (possibilityCounter == possibilityList.Length)
+                        {
+                            possibilityCounter = 0;
+                        }
+
+                        if (possibilityCounter == 0)
+                        {
+                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            possibilityList[possibilityCounter].SetActive(true);
+                            possibilityList[possibilityList.Length - 1].SetActive(false);
+                            //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                        }
+                        if (possibilityCounter == 1)
+                        {
+                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            possibilityList[possibilityCounter].SetActive(true);
+                            possibilityList[possibilityCounter - 1].SetActive(false);
+                            //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                        }
+
+                        if (possibilityCounter == 2)
+                        {
+                            //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                            //createSphereIfPossible.createObjectIfPossible.collision = false;
+                            controllerSphere.GetComponent<SphereCollider>().enabled = false;
+                            controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                            possibilityList[possibilityCounter].SetActive(true);
+                            possibilityList[possibilityCounter - 1].SetActive(false);
+                        }
+                        switchCircle();
+
+                    }
+
+
+
+                    if (controller.GetAxis(touchPad).y < -0.5f) //down
+                    {
+                        saveCircle();
+
+                        possibilityCounter--;
+
+                        if (possibilityCounter < 0)
+                        {
+                            possibilityCounter = possibilityList.Length - 1;
+                        }
+
+                        if (possibilityCounter == 0)
+                        {
+                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            possibilityList[possibilityCounter].SetActive(true);
+                            possibilityList[possibilityCounter + 1].SetActive(false);
+                            //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                        }
+                        if (possibilityCounter == 1)
+                        {
+                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
+                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            possibilityList[possibilityCounter].SetActive(true);
+                            possibilityList[possibilityCounter + 1].SetActive(false);
+                            //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                        }
+
+                        if (possibilityCounter == 2)
+                        {
+                            //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
+                            // createSphereIfPossible.createObjectIfPossible.collision = false;
+                            controllerSphere.GetComponent<SphereCollider>().enabled = false;
+                            controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                            possibilityList[possibilityCounter].SetActive(true);
+                            possibilityList[0].SetActive(false);
+                        }
+                        switchCircle();
                     }
                 }
 
-                if (controller.GetAxis(touchPad).x < -0.5f) //left
-                {
-                    indexAudioList--;
-                    if (indexAudioList < 0)
-                    {
-                        indexAudioList = audioList.Length - 1;
-                    }
+                GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
 
-                    GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot6").transform.position;
-
-                    for (int i = audioList.Length - 1; i > -1; i--)
-                    {
-                        if (i == 0)
-                        {
-                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("invisSphere").transform.position;
-                        }
-                        else
-                        {
-                            int k = i - 1;
-                            GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
-                        }
-                    }
-                }
-
-
-
-
-                if (controller.GetAxis(touchPad).y > 0.5f) //up 
-                {
-                    saveCircle();
-                    
-                    possibilityCounter++;
-
-                    if(possibilityCounter == possibilityList.Length)
-                    {
-                        possibilityCounter = 0;
-                    }
-
-                    if(possibilityCounter == 0)
-                    {
-                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        possibilityList[possibilityList.Length - 1].SetActive(false);
-                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                    }
-                    if(possibilityCounter == 1)
-                    {
-                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        possibilityList[possibilityCounter - 1].SetActive(false);
-                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                    }
-
-                    if(possibilityCounter == 2)
-                    {
-                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                        //createSphereIfPossible.createObjectIfPossible.collision = false;
-                        controllerSphere.GetComponent<SphereCollider>().enabled = false;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = false;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        possibilityList[possibilityCounter - 1].SetActive(false);
-                    }
-                    switchCircle();
-
-                }
-
-
-
-                if (controller.GetAxis(touchPad).y < -0.5f) //down
-                {
-                    saveCircle();
-                    
-                    possibilityCounter--;
-
-                    if (possibilityCounter < 0)
-                    {
-                        possibilityCounter = possibilityList.Length - 1;
-                    }
-
-                    if (possibilityCounter == 0)
-                    {
-                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        possibilityList[possibilityCounter + 1].SetActive(false);
-                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                    }
-                    if (possibilityCounter == 1)
-                    {
-                        controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = true;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        possibilityList[possibilityCounter + 1].SetActive(false);
-                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                    }
-
-                    if (possibilityCounter == 2)
-                    {
-                        //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
-                       // createSphereIfPossible.createObjectIfPossible.collision = false;
-                        controllerSphere.GetComponent<SphereCollider>().enabled = false;
-                        controllerSphere.GetComponent<MeshRenderer>().enabled = false;
-                        possibilityList[possibilityCounter].SetActive(true);
-                        possibilityList[0].SetActive(false);
-                    }
-                    switchCircle();
-                }
-            }
-
-            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+            
 
         }
+
+
+
     }
 }

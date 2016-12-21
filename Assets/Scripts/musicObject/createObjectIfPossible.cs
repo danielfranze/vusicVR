@@ -11,6 +11,7 @@ namespace createSphereIfPossible
         // Use this for initialization
         void Start()
         {
+            // Global
             createSphereIsPossible = true;
             collision = false;
         }

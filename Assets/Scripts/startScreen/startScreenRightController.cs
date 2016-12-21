@@ -14,17 +14,17 @@ public class startScreenRightController : MonoBehaviour
 
     private int audioListLength = startScreen.startScreenChooseMelody.startSphereMelodyList.Length;
     public SteamVR_Controller.Device controller;
-    private Valve.VR.EVRButtonId triggerButton;
+    //private Valve.VR.EVRButtonId triggerButton;
     private Valve.VR.EVRButtonId touchPad;
-    Collider col;
+    //Collider col;
     // Use this for initialization
     void Start()
     {
-        col = GetComponent<Collider>();
+        //col = GetComponent<Collider>();
         indexAudioList = 0;
         trackedObject = GetComponent<SteamVR_TrackedObject>();
         controller = SteamVR_Controller.Input((int)trackedObject.index);
-        triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
+        //triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
         touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
         device = GetComponent<SteamVR_TrackedController>();
         device.TriggerClicked += TriggerClicked;

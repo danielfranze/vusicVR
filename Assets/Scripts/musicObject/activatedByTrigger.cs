@@ -5,11 +5,13 @@ using System;
 
 public class activatedByTrigger : MonoBehaviour
 {
-    MeshRenderer mesh;
-    DateTime isActiveTime = DateTime.Now;
+    private MeshRenderer mesh;
+    //private DateTime isActiveTime = DateTime.Now;
+
     // Use this for initialization
     void Start()
     {
+        // Lokal
         mesh = GetComponents<MeshRenderer>()[0];
     }
 

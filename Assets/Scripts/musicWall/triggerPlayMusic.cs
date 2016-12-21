@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class triggerPlayMusic : MonoBehaviour {
-    AudioSource audio;
-    MeshRenderer mesh;
-    bool isActivate;
+public class triggerPlayMusic : MonoBehaviour
+{
+
+    private AudioSource audioSource;
+    private MeshRenderer mesh;
+    private bool isActivate;
+
     // Use this for initialization
-    void Start () {
-        audio = GetComponents<AudioSource>()[0];
+    void Start ()
+    {
+        // Lokal
+        audioSource = GetComponents<AudioSource>()[0];
         mesh = GetComponents<MeshRenderer>()[0];
         isActivate = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	    
 	}
 
@@ -23,14 +29,14 @@ public class triggerPlayMusic : MonoBehaviour {
         {
             if (isActivate)
             {
-                audio.Play();
+                audioSource.Play();
             }
         }
         else
         {
             if (isActivate)
             {
-                audio.Stop();
+                audioSource.Stop();
                 mesh.material.color = Color.white;
                 isActivate = false;
             }
@@ -60,7 +66,6 @@ public class triggerPlayMusic : MonoBehaviour {
                 isActivate = true;
             }
         }
-
 
     }
     

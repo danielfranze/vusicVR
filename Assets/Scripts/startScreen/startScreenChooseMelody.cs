@@ -8,8 +8,8 @@ namespace startScreen
     {
 
         public static AudioClip[] startSphereMelodyList = new AudioClip[3];
-        Material[] startSphereColorList = new Material[3];
-        GameObject startSphere;
+        private Material[] startSphereColorList = new Material[3];
+        private GameObject startSphere;
         public int startSphereIndex = 0;
         // Use this for initialization
         void Start()
@@ -37,9 +37,8 @@ namespace startScreen
                 changeColorAndSoundRightSide();
             }
 
-
-
         }
+
 
         public void changeAudio(string padInput)
         {
