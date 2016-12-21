@@ -136,12 +136,20 @@ namespace main
             {
                 trigger = false;
             }
+            //GameObject.Find("logo").GetComponent<startScreenChooseMelody>().getStartSphereMelodyListLength();
+            //controllerSphere
 
-            if (controller.GetPress(triggerButton) && !createSphereIfPossible.sphereIsOnGrid.collision && createSphereIfPossible.sphereIsOnGrid.sphereOnGrid)
+            //GameObject.Find("controllerSphere").GetComponent<createObjectIfPossible>().getCollision()
+
+            
+
+            if (controller.GetPress(triggerButton) && !(GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getCollision()) && GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getSphereOnGrid())
             {
                 controller.TriggerHapticPulse(1000);
+                
                 createSphere();
-                createSphereIfPossible.sphereIsOnGrid.sphereCreater = false;
+                GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().setSphereCreater(false);
+                
             }
 
 
@@ -150,12 +158,13 @@ namespace main
 
         void createSphere()
         {
+            
             //Debug.Log(audioList[0]);
             actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-            actorSphere.transform.position = new Vector3(createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[0], 
-                                                         GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1], 
-                                                         createSphereIfPossible.sphereIsOnGrid.currentGrid.transform.position[2]);
+            actorSphere.transform.position = new Vector3(GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getTransformPosition(0), 
+                                                         GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1],
+                                                         GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getTransformPosition(2));
 
             actorSphere.AddComponent<Rigidbody>();
             actorSphere.GetComponent<Rigidbody>().useGravity = false;

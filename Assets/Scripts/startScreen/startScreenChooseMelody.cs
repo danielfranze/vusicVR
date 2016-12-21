@@ -7,10 +7,12 @@ namespace startScreen
     public class startScreenChooseMelody : MonoBehaviour
     {
 
-        public static AudioClip[] startSphereMelodyList = new AudioClip[3];
+        private AudioClip[] startSphereMelodyList = new AudioClip[3];
         private Material[] startSphereColorList = new Material[3];
         private GameObject startSphere;
+
         public int startSphereIndex = 0;
+
         // Use this for initialization
         void Start()
         {
@@ -66,6 +68,7 @@ namespace startScreen
             startSphere.GetComponents<AudioSource>()[0].Play();
 
         }
+
         private void changeColorAndSoundLeftSide()
         {
             startSphereIndex--;
@@ -77,6 +80,11 @@ namespace startScreen
             startSphere.GetComponent<AudioSource>().clip = startSphereMelodyList[startSphereIndex];
             startSphere.GetComponent<MeshRenderer>().material = startSphereColorList[startSphereIndex];
             startSphere.GetComponents<AudioSource>()[0].Play();
+        }
+
+        public int getStartSphereMelodyListLength()
+        {
+            return startSphereMelodyList.Length;
         }
 
 

@@ -25,26 +25,27 @@ public class leftController : MonoBehaviour
 
         if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            if (movePointSensorNamespace.movePointSensor.speed >= 3f || movePointSensorNamespace.movePointSensor.speed <= -3f)
+
+            if (GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= 3f || GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= -3f)
             {
                 //Debug.Log("speed nicht ok");
 
             }
-            if (controller.GetAxis(touchPad).y <= -0.5f && movePointSensorNamespace.movePointSensor.speed >= -4f)
+            if (controller.GetAxis(touchPad).y <= -0.5f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= -4f)
             {
-                movePointSensorNamespace.movePointSensor.speed -= 0.1f;
+                GameObject.Find("Trigger").GetComponent<movePointSensor>().subSpeed(0.1f);
                 //Debug.Log(movePointSensorNamespace.movePointSensor.speed);
             }
 
-            if (controller.GetAxis(touchPad).y >= 0.5f && movePointSensorNamespace.movePointSensor.speed <= 4f)
+            if (controller.GetAxis(touchPad).y >= 0.5f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= 4f)
             {
-                movePointSensorNamespace.movePointSensor.speed += 0.1f;
+                GameObject.Find("Trigger").GetComponent<movePointSensor>().addSpeed(0.1f);
 
             }
 
             if (controller.GetAxis(touchPad).y < 0.5f && controller.GetAxis(touchPad).y > -0.5f)
             {
-                movePointSensorNamespace.movePointSensor.speed = 0;
+                GameObject.Find("Trigger").GetComponent<movePointSensor>().setSpeed(0);
             }
         }
     }

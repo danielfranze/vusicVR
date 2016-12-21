@@ -1,12 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace createSphereIfPossible
-{
+
     public class createObjectIfPossible : MonoBehaviour
     {
-        public static bool createSphereIsPossible;
-        public static bool collision;
+        private bool createSphereIsPossible;
+        private bool collision;
+
+
+        public bool getCreateSphereIfPossible()
+        {
+            return createSphereIsPossible;
+        }
+
+        public void setCreateSphereIfPossible(bool value)
+        {
+            createSphereIsPossible = value;
+        }
+
+        public bool getCollision()
+        {
+            return collision;
+        }
+
+        public void setCollision(bool value)
+        {
+            collision = value;
+        }
+
 
         // Use this for initialization
         void Start()
@@ -34,4 +55,4 @@ namespace createSphereIfPossible
             collision = true;
         }
     }
-}
+

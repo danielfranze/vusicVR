@@ -1,17 +1,76 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace createSphereIfPossible
-{
+
     public class sphereIsOnGrid : MonoBehaviour
     {
-        public static bool sphereCreater;
-        public static bool sphereOnGrid;
-        public static bool collision;
-        public static GameObject currentGrid;
+        private bool sphereCreater;
+        private bool sphereOnGrid;
+        private bool collision;
+        private GameObject currentGrid;
 
-        // Use this for initialization
-        void Start()
+
+        public float getTransformPosition(int position)
+        {
+            return currentGrid.transform.position[position];
+        }
+
+        
+        public bool getSphereCreater()
+        {
+            return sphereCreater;
+        }
+
+        public void setSphereCreater(bool value)
+        {
+            sphereCreater = value;
+        }
+
+         public bool getSphereOnGrid()
+        {
+            return sphereOnGrid;
+        }
+
+        public void setSphereOnGrid(bool value)
+        {
+            sphereOnGrid = value;
+        }
+
+        public bool getCollision()
+        {
+            return collision;
+        }
+
+        public void setCollision(bool value)
+        {
+            collision = value;
+        }
+
+        public GameObject getCurrentGrid()
+        {
+            return currentGrid;
+        }
+
+        public void setCurrentGrid(GameObject value)
+        {
+            currentGrid = value;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Use this for initialization
+    void Start()
         {
            // sphereCreater = true;
             collision = false;
@@ -64,4 +123,3 @@ namespace createSphereIfPossible
             }
         }
     }
-}

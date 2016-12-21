@@ -2,13 +2,36 @@
 using System.Collections;
 using System.Linq;
 
-namespace movePointSensorNamespace
-{
+
     public class movePointSensor : MonoBehaviour
     {
-        public static float speed;
+        private float speed;
 
-        private Transform[] sensorPoints;
+
+
+
+        public float getSpeed()
+        {
+            return speed;
+        }
+
+        public void setSpeed(float value)
+        {
+            speed = value;
+        }
+
+        public void subSpeed(float value)
+        {
+            speed -= value;
+        }
+
+        public void addSpeed(float value)
+        {
+            speed += value;
+        }
+
+
+    private Transform[] sensorPoints;
         private int currentPoint;
 
         // Use this for initialization
@@ -44,4 +67,3 @@ namespace movePointSensorNamespace
                                                      .position, speed * Time.deltaTime);
         }
     }
-}

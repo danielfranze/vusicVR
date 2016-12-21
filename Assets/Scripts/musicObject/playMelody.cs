@@ -5,7 +5,7 @@ using UnityEngine;
 public class playMelody : MonoBehaviour
 {
 
-    public static AudioClip[] startSphereMelodyList = new AudioClip[3];
+    public AudioClip[] startSphereMelodyList = new AudioClip[3];
 
     private GameObject objectOfMelody;
     // Use this for initialization

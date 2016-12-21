@@ -12,7 +12,12 @@ public class startScreenRightController : MonoBehaviour
     private SteamVR_TrackedController device;
     private int indexAudioList;
 
-    private int audioListLength = startScreen.startScreenChooseMelody.startSphereMelodyList.Length;
+    private int audioListLength;
+
+
+    //GameObject.Find("logo").GetComponent<startScreenChooseMelody>().changeAudio("touchPadRight");
+
+
     public SteamVR_Controller.Device controller;
     //private Valve.VR.EVRButtonId triggerButton;
     private Valve.VR.EVRButtonId touchPad;
@@ -20,6 +25,7 @@ public class startScreenRightController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        audioListLength = GameObject.Find("logo").GetComponent<startScreenChooseMelody>().getStartSphereMelodyListLength();
         //col = GetComponent<Collider>();
         indexAudioList = 0;
         trackedObject = GetComponent<SteamVR_TrackedObject>();
@@ -72,7 +78,8 @@ public class startScreenRightController : MonoBehaviour
             if (controller.GetAxis(touchPad).x > 0.5f) //right
             {
                 indexAudioList++;
-                if(indexAudioList == audioListLength)
+                
+                if (indexAudioList == audioListLength)
                 {
                     indexAudioList = 0;
                 }
@@ -82,6 +89,7 @@ public class startScreenRightController : MonoBehaviour
             if (controller.GetAxis(touchPad).x < -0.5f) //left
             {
                 indexAudioList--;
+
                 if (indexAudioList < 0)
                 {
                     indexAudioList = audioListLength -1;
