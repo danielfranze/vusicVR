@@ -27,9 +27,21 @@ public class sphereDestroy : MonoBehaviour
     {
         if (col.gameObject.tag == "musicSphere" && main.rightController.trigger == true)
         {
+
             main.rightController.controller.TriggerHapticPulse(1000);
             Destroy(col.gameObject);
+            //GameObject.Find("controllerSphere").GetComponent<createObjectIfPossible>().setCollision(false);
+            //GameObject.Find("controllerSphere").GetComponent<createObjectIfPossible>().setCreateSphereIfPossible(false);
+            //GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().setCollision(false);
         }
     }
+
+    /*void OnTriggerExit(Collider col)
+    {
+        if(col.gameObject.tag == "musicSphere")
+        {
+            GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().setCollision(false);
+        }
+    }*/
 
 }
