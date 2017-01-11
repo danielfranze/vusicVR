@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
-public class SwipeDetector : NetworkBehaviour
+public class swipeDetectorStartScreen : NetworkBehaviour
 {
     [SerializeField]
     SteamVR_TrackedObject trackedObj;
@@ -147,12 +147,14 @@ public class SwipeDetector : NetworkBehaviour
     {
         Debug.Log("Swipe Left");
         mMessageIndex = 1;
+        startScreen.startScreenRightController.leftSwitcher();
     }
 
     private void OnSwipeRight()
     {
         Debug.Log("Swipe right");
         mMessageIndex = 2;
+        startScreen.startScreenRightController.rightSwitcher();
 
     }
 

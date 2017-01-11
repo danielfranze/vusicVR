@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Timers;
+using System.Linq;
+///using System.Threading;
+
 
 public class activatedByTrigger : MonoBehaviour
 {
+
+    /// private Thread t1;
     private MeshRenderer mesh;
     //private DateTime isActiveTime = DateTime.Now;
 
@@ -13,6 +19,7 @@ public class activatedByTrigger : MonoBehaviour
     {
         // Lokal
         mesh = GetComponents<MeshRenderer>()[0];
+        /// t1 = new Thread(doLogic) { Name = "Thread 1" };
     }
 
     // Update is called once per frame
@@ -33,7 +40,17 @@ public class activatedByTrigger : MonoBehaviour
     {
         if (col.gameObject.tag == "Trigger")
         {
+            /// t1.Start();
+            /// t1.Join();
+
             mesh.material = Resources.Load("grid") as Material;
         }
     }
+
+    /*void doLogic()
+    {
+        Thread.Sleep(1000);
+
+    }*/
+
 }
