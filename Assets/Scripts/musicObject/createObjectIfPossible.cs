@@ -18,7 +18,7 @@ using System.Collections;
             createSphereIsPossible = value;
         }
 
-        public bool getCollision()
+       public bool getCollision()
         {
             return collision;
         }

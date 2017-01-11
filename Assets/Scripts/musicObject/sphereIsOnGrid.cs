@@ -14,7 +14,7 @@ using System.Collections;
         {
             return currentGrid.transform.position[position];
         }
-
+        
         
         public bool getSphereCreater()
         {

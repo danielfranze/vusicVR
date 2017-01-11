@@ -72,13 +72,13 @@ namespace main
             audioList1[5] = Resources.Load("Clap909") as AudioClip;
             audioList1[6] = Resources.Load("Kick909_2") as AudioClip;
 
-            audioList2[0] = Resources.Load("R_Kick") as AudioClip;
-            audioList2[1] = Resources.Load("HiHatOpen909") as AudioClip;
-            audioList2[2] = Resources.Load("TomHi909") as AudioClip;
-            audioList2[3] = Resources.Load("TomMid909") as AudioClip;
-            audioList2[4] = Resources.Load("Rim909") as AudioClip;
-            audioList2[5] = Resources.Load("Clap909") as AudioClip;
-            audioList2[6] = Resources.Load("Kick909_2") as AudioClip;
+            audioList2[0] = Resources.Load("Horn2") as AudioClip;
+            audioList2[1] = Resources.Load("3_D#3") as AudioClip;
+            audioList2[2] = Resources.Load("4_F") as AudioClip;
+            audioList2[3] = Resources.Load("5_G3") as AudioClip;
+            audioList2[4] = Resources.Load("6_As") as AudioClip;
+            audioList2[5] = Resources.Load("7_B") as AudioClip;
+            audioList2[6] = Resources.Load("8_C4") as AudioClip;
 
             colorList1[0] = Resources.Load("1lila") as Material;
             colorList1[1] = Resources.Load("1rot") as Material;
@@ -158,9 +158,21 @@ namespace main
 
         void createSphere()
         {
+            if(currentColorCircle == 0)
+            {
+                actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                actorSphere.GetComponent<SphereCollider>().radius = 1f;
+                actorSphere.GetComponent<SphereCollider>().isTrigger = true;
+            } else
+            {
+                actorSphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                actorSphere.gameObject.transform.Rotate(new Vector3(0, 0, 0));
+                actorSphere.GetComponent<BoxCollider>();
+                actorSphere.GetComponent<BoxCollider>().isTrigger = true;
+            }
             
             //Debug.Log(audioList[0]);
-            actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            //actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             actorSphere.transform.position = new Vector3(GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getTransformPosition(0), 
                                                          GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1],
@@ -171,8 +183,6 @@ namespace main
             actorSphere.GetComponent<Rigidbody>().isKinematic = true;
             actorSphere.name = "Sound" + indexAudioList + currentColorCircle; 
             actorSphere.tag = "musicSphere";
-            actorSphere.GetComponent<SphereCollider>().radius = 1f;
-            actorSphere.GetComponent<SphereCollider>().isTrigger = true;
             actorSphere.AddComponent<AudioSource>();
             actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList];
 

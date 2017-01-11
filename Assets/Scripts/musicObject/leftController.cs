@@ -33,13 +33,15 @@ public class leftController : MonoBehaviour
             }
             if (controller.GetAxis(touchPad).y <= -0.5f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= -4f)
             {
-                GameObject.Find("Trigger").GetComponent<movePointSensor>().subSpeed(0.1f);
+                GameObject.Find("Trigger").GetComponent<movePointSensor>().subSpeed(0.025f);
+                GameObject.Find("Gitter_Karussell").GetComponents<AudioSource>()[0].pitch -= 0.025f;
                 //Debug.Log(movePointSensorNamespace.movePointSensor.speed);
             }
 
             if (controller.GetAxis(touchPad).y >= 0.5f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= 4f)
             {
-                GameObject.Find("Trigger").GetComponent<movePointSensor>().addSpeed(0.1f);
+                GameObject.Find("Trigger").GetComponent<movePointSensor>().addSpeed(0.025f);
+                GameObject.Find("Gitter_Karussell").GetComponents<AudioSource>()[0].pitch += 0.025f;
 
             }
 

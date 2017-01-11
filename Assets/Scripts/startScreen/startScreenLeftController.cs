@@ -6,7 +6,7 @@ using startScreen;
 
 
 
-public class startScreenRightController : MonoBehaviour
+public class startScreenLeftController : MonoBehaviour
 {
     private SteamVR_TrackedObject trackedObject;
     private SteamVR_TrackedController device;
@@ -23,6 +23,7 @@ public class startScreenRightController : MonoBehaviour
             indexAudioList = 0;
         }
     }
+
 
     //GameObject.Find("logo").GetComponent<startScreenChooseMelody>().changeAudio("touchPadRight");
 
@@ -64,10 +65,10 @@ public class startScreenRightController : MonoBehaviour
         //EditorSceneManager.LoadScene("Assets/Scene/musicObjects.unity");
 
     }
-    
+
     void OnTriggerEnter(Collider col)
     {
-        if(controller.GetPress(SteamVR_Controller.ButtonMask.Trigger) == true)
+        if (controller.GetPress(SteamVR_Controller.ButtonMask.Trigger) == true)
         {
             PlayerPrefs.SetInt("currentMelody", GameObject.Find("logo").GetComponent<startScreenChooseMelody>().getIndexAudioList());
             EditorSceneManager.LoadScene("Assets/Scene/musicObjects.unity");
@@ -82,6 +83,8 @@ public class startScreenRightController : MonoBehaviour
             EditorSceneManager.LoadScene("Assets/Scene/musicObjects.unity");
         }
     }
+
+
 
     void PadClicked(object sender, ClickedEventArgs e)
     {
