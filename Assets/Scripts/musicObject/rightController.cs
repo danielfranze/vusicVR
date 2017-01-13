@@ -109,7 +109,7 @@ namespace main
             
             colorCircle = colorCircle1;
             colorList = colorList1;
-            audioList = audioList2;
+            audioList = audioList1;
 
             colorCircle1.SetActive(true);
             controllerSphere.SetActive(true);
