@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using System.Timers;
 using System.Linq;
-///using System.Threading;
 
 
 public class activatedByTrigger : MonoBehaviour
@@ -36,21 +35,18 @@ public class activatedByTrigger : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider col)
-    {
+    void OnTriggerExit(Collider col) {
         if (col.gameObject.tag == "Trigger")
         {
-            /// t1.Start();
-            /// t1.Join();
-
-            mesh.material = Resources.Load("grid") as Material;
+            var numberOfSeconds = 2f; StartCoroutine(SetMaterialAfter(numberOfSeconds));
         }
     }
-
-    /*void doLogic()
+    private IEnumerator SetMaterialAfter(float seconds)
     {
-        Thread.Sleep(1000);
+        yield return new WaitForSeconds(0.1f);
+        mesh.material = Resources.Load("grid") as Material;
+    }
 
-    }*/
+
 
 }
