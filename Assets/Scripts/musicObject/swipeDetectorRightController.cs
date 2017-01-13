@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
-public class SwipeDetector : NetworkBehaviour
+public class swipeDetectorRightController : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     SteamVR_TrackedObject trackedObj;
     private const int mMessageWidth = 200;
     private const int mMessageHeight = 64;
@@ -147,13 +147,18 @@ public class SwipeDetector : NetworkBehaviour
     {
         Debug.Log("Swipe Left");
         mMessageIndex = 1;
+        //main.rightController.leftSwitcherIfSwipe();
+        GameObject.FindWithTag("mainRightController").GetComponent<helper.switchHelperRightController>().leftSwitcherIfSwipe();
+        //helper.switchHelperRightController.leftSwitcherIfSwipe();
     }
 
     private void OnSwipeRight()
     {
         Debug.Log("Swipe right");
         mMessageIndex = 2;
-
+        //main.rightController.rightSwitcherIfSwipe();
+        GameObject.FindWithTag("mainRightController").GetComponent<helper.switchHelperRightController>().rightSwitcherIfSwipe();
+        //helper.switchHelperRightController.rightSwitcherIfSwipe();
     }
 
     private void OnSwipeTop()

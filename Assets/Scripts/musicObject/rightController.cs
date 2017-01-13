@@ -231,6 +231,30 @@ namespace main
             }
         }
 
+        public void addIndexAudioList() {
+            indexAudioList++;
+        }
+        public void subIndexAudioList()
+        {
+            indexAudioList--;
+        }
+        public int getIndexAudioList()
+        {
+            return indexAudioList;
+        }
+        public int getAudioListLength()
+        {
+            return audioList.Length;
+        }
+        public void setIndexAudioList(int value)
+        {
+            indexAudioList = value;
+        }
+        public void changeColorControllerSphere()
+        {
+            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+        }
+
 
         void PadClicked(object sender, ClickedEventArgs e)
 
@@ -373,9 +397,10 @@ namespace main
                     }
                 }
 
-                GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+            changeColorControllerSphere();
 
-            
+
+
 
         }
 

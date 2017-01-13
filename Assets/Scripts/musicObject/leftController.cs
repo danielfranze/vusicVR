@@ -15,6 +15,7 @@ public class leftController : MonoBehaviour
         // Lokal
         touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
         trackedObject = GetComponent<SteamVR_TrackedObject>();
+        //GameObject.FindWithTag("mainRightController").SetActive(true);
 
     }
 

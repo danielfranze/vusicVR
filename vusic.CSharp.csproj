@@ -81,7 +81,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\musicObject\SwipeDetector.cs" />
     <Compile Include="Assets\Scripts\musicObject\activatedByTrigger.cs" />
     <Compile Include="Assets\Scripts\musicObject\createObjectIfPossible.cs" />
     <Compile Include="Assets\Scripts\musicObject\leftController.cs" />
@@ -91,6 +90,8 @@
     <Compile Include="Assets\Scripts\musicObject\rightController.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereDestroy.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereIsOnGrid.cs" />
+    <Compile Include="Assets\Scripts\musicObject\swipeDetectorRightController.cs" />
+    <Compile Include="Assets\Scripts\musicObject\switchHelperRightController.cs" />
     <Compile Include="Assets\Scripts\musicWall\movePoint.cs" />
     <Compile Include="Assets\Scripts\musicWall\triggerPlayMusic.cs" />
     <Compile Include="Assets\Scripts\startScreen\startScreenChooseMelody.cs" />
