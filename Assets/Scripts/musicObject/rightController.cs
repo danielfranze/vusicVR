@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 
 namespace main
@@ -30,6 +30,7 @@ namespace main
         public GameObject colorCircle;
         public GameObject colorCircle1;
         public GameObject colorCircle2;
+        public static GameObject currentController;
 
         private int indexAudioList = 0;
         private int indexAudioList1 = 0;
@@ -38,8 +39,10 @@ namespace main
         private int possibilityCounter = 0;
 
         public GameObject[] possibilityList = new GameObject[3];
-        public GameObject sphereDestroyer;  
+        public GameObject sphereDestroyer;
         public GameObject controllerSphere;
+        public GameObject controllerCube;
+
 
         public static bool trigger = false;
 
@@ -72,13 +75,13 @@ namespace main
             audioList1[5] = Resources.Load("Clap909") as AudioClip;
             audioList1[6] = Resources.Load("Kick909_2") as AudioClip;
 
-            audioList2[0] = Resources.Load("Horn2") as AudioClip;
-            audioList2[1] = Resources.Load("3_D#3") as AudioClip;
-            audioList2[2] = Resources.Load("4_F") as AudioClip;
-            audioList2[3] = Resources.Load("5_G3") as AudioClip;
-            audioList2[4] = Resources.Load("6_As") as AudioClip;
-            audioList2[5] = Resources.Load("7_B") as AudioClip;
-            audioList2[6] = Resources.Load("8_C4") as AudioClip;
+            audioList2[0] = Resources.Load("aTechNote1") as AudioClip;
+            audioList2[1] = Resources.Load("aTechNote2") as AudioClip;
+            audioList2[2] = Resources.Load("aTechNote3") as AudioClip;
+            audioList2[3] = Resources.Load("aTechNote4") as AudioClip;
+            audioList2[4] = Resources.Load("aTechNote5") as AudioClip;
+            audioList2[5] = Resources.Load("aTechNote6") as AudioClip;
+            audioList2[6] = Resources.Load("aTechNote7") as AudioClip;
 
             colorList1[0] = Resources.Load("1lila") as Material;
             colorList1[1] = Resources.Load("1rot") as Material;
@@ -99,9 +102,10 @@ namespace main
 
             // Global
             sphereDestroyer = GameObject.Find("sphereDestroyer");
-            controllerSphere = GameObject.Find("controllerSphere");
             colorCircle1 = GameObject.Find("colorCircle1");
             colorCircle2 = GameObject.Find("colorCircle2");
+            controllerSphere = GameObject.Find("controllerSphere");
+            controllerCube = GameObject.Find("controllerCube");
 
             possibilityList[0] = colorCircle1;
             possibilityList[1] = colorCircle2;
@@ -110,12 +114,13 @@ namespace main
             colorCircle = colorCircle1;
             colorList = colorList1;
             audioList = audioList1;
+            currentController = controllerSphere;
 
             colorCircle1.SetActive(true);
-            controllerSphere.SetActive(true);
-   
-            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
-
+            currentController.SetActive(true);
+            currentController.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+            //GameObject.Find("controllerCube").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+            controllerCube.SetActive(false);
             sphereDestroyer.SetActive(false);
             colorCircle2.SetActive(false);
 
@@ -143,12 +148,12 @@ namespace main
 
             
 
-            if (controller.GetPress(triggerButton) && !(GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getCollision()) && GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getSphereOnGrid())
+            if (controller.GetPress(triggerButton) && !(currentController.GetComponent<sphereIsOnGrid>().getCollision()) && currentController.GetComponent<sphereIsOnGrid>().getSphereOnGrid())
             {
                 controller.TriggerHapticPulse(1000);
                 
                 createSphere();
-                GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().setSphereCreater(false);
+                currentController.GetComponent<sphereIsOnGrid>().setSphereCreater(false);
                 
             }
 
@@ -162,21 +167,23 @@ namespace main
             {
                 actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 actorSphere.GetComponent<SphereCollider>().radius = 1f;
+                actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
                 actorSphere.GetComponent<SphereCollider>().isTrigger = true;
             } else
             {
                 actorSphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                actorSphere.gameObject.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
                 actorSphere.gameObject.transform.Rotate(new Vector3(0, 0, 0));
-                actorSphere.GetComponent<BoxCollider>();
+                actorSphere.GetComponent<BoxCollider>().size = new Vector3(2f, 2f, 2f);
                 actorSphere.GetComponent<BoxCollider>().isTrigger = true;
             }
             
             //Debug.Log(audioList[0]);
             //actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-            actorSphere.transform.position = new Vector3(GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getTransformPosition(0), 
-                                                         GameObject.FindGameObjectWithTag("ControllerSphere").transform.position[1],
-                                                         GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().getTransformPosition(2));
+            
+            actorSphere.transform.position = new Vector3(currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(0), 
+                                                         currentController.transform.position[1],
+                                                         currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(2));
 
             actorSphere.AddComponent<Rigidbody>();
             actorSphere.GetComponent<Rigidbody>().useGravity = false;
@@ -252,7 +259,7 @@ namespace main
         }
         public void changeColorControllerSphere()
         {
-            GameObject.Find("controllerSphere").GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+            currentController.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
         }
 
 
@@ -286,7 +293,8 @@ namespace main
                                 GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
                             }
                         }
-                    }
+                    GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
+                }
 
                     if (controller.GetAxis(touchPad).x < -0.5f && (sphereDestroyer.gameObject.activeSelf == false)) //left
                     {
@@ -316,7 +324,6 @@ namespace main
                     if (controller.GetAxis(touchPad).y > 0.5f) //up 
                     {
                         saveCircle();
-
                         possibilityCounter++;
 
                         if (possibilityCounter == possibilityList.Length)
@@ -326,16 +333,22 @@ namespace main
 
                         if (possibilityCounter == 0)
                         {
-                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            currentController = controllerSphere;
+                            controllerCube.SetActive(false);
+                            controllerSphere.SetActive(true);
+                            currentController.GetComponent<SphereCollider>().enabled = true;
+                            currentController.GetComponent<MeshRenderer>().enabled = true;
                             possibilityList[possibilityCounter].SetActive(true);
                             possibilityList[possibilityList.Length - 1].SetActive(false);
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                         }
                         if (possibilityCounter == 1)
                         {
-                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            currentController = controllerCube;
+                            controllerCube.SetActive(true);
+                            controllerSphere.SetActive(false);
+                            currentController.GetComponent<BoxCollider>().enabled = true;
+                            currentController.GetComponent<MeshRenderer>().enabled = true;
                             possibilityList[possibilityCounter].SetActive(true);
                             possibilityList[possibilityCounter - 1].SetActive(false);
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
@@ -345,8 +358,8 @@ namespace main
                         {
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                             //createSphereIfPossible.createObjectIfPossible.collision = false;
-                            controllerSphere.GetComponent<SphereCollider>().enabled = false;
-                            controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                            currentController.GetComponent<BoxCollider>().enabled = false;
+                            currentController.GetComponent<MeshRenderer>().enabled = false;
                             possibilityList[possibilityCounter].SetActive(true);
                             possibilityList[possibilityCounter - 1].SetActive(false);
                         }
@@ -359,7 +372,6 @@ namespace main
                     if (controller.GetAxis(touchPad).y < -0.5f) //down
                     {
                         saveCircle();
-
                         possibilityCounter--;
 
                         if (possibilityCounter < 0)
@@ -369,16 +381,22 @@ namespace main
 
                         if (possibilityCounter == 0)
                         {
-                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            currentController = controllerSphere;
+                            controllerCube.SetActive(false);
+                            controllerSphere.SetActive(true);
+                            currentController.GetComponent<SphereCollider>().enabled = true;
+                            currentController.GetComponent<MeshRenderer>().enabled = true;
                             possibilityList[possibilityCounter].SetActive(true);
                             possibilityList[possibilityCounter + 1].SetActive(false);
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                         }
                         if (possibilityCounter == 1)
                         {
-                            controllerSphere.GetComponent<SphereCollider>().enabled = true;
-                            controllerSphere.GetComponent<MeshRenderer>().enabled = true;
+                            currentController = controllerCube;
+                            controllerCube.SetActive(true);
+                            controllerSphere.SetActive(false);
+                            currentController.GetComponent<BoxCollider>().enabled = true;
+                            currentController.GetComponent<MeshRenderer>().enabled = true;
                             possibilityList[possibilityCounter].SetActive(true);
                             possibilityList[possibilityCounter + 1].SetActive(false);
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
@@ -388,8 +406,8 @@ namespace main
                         {
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                             // createSphereIfPossible.createObjectIfPossible.collision = false;
-                            controllerSphere.GetComponent<SphereCollider>().enabled = false;
-                            controllerSphere.GetComponent<MeshRenderer>().enabled = false;
+                            currentController.GetComponent<SphereCollider>().enabled = false;
+                            currentController.GetComponent<MeshRenderer>().enabled = false;
                             possibilityList[possibilityCounter].SetActive(true);
                             possibilityList[0].SetActive(false);
                         }

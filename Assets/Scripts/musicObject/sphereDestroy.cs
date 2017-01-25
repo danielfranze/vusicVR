@@ -32,7 +32,9 @@ public class sphereDestroy : MonoBehaviour
             Destroy(col.gameObject);
             //GameObject.Find("controllerSphere").GetComponent<createObjectIfPossible>().setCollision(false);
             //GameObject.Find("controllerSphere").GetComponent<createObjectIfPossible>().setCreateSphereIfPossible(false);
-            GameObject.Find("controllerSphere").GetComponent<sphereIsOnGrid>().setCollision(false);
+
+            main.rightController.currentController.GetComponent<sphereIsOnGrid>().setCollision(false);
+            
         }
     }
 

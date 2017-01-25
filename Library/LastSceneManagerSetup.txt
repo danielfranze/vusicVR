@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/startScreen.unity
+- path: Assets/Scene/musicObjects.unity
   isLoaded: 1
   isActive: 1

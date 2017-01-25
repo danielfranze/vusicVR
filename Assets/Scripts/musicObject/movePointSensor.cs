@@ -38,7 +38,7 @@ using System.Linq;
         void Start()
         {
             // Global
-            speed = 1.025f;
+            speed = 1.92755f;
 
 
             // Lokal

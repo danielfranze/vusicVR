@@ -13,13 +13,13 @@ public class playMelody : MonoBehaviour
     {
 
         // Global
-        startSphereMelodyList[0] = Resources.Load("Melodie3_House2") as AudioClip;
-        startSphereMelodyList[1] = Resources.Load("Melodie2_House1") as AudioClip;
-        startSphereMelodyList[2] = Resources.Load("Melodie5_düster") as AudioClip;
+        startSphereMelodyList[0] = Resources.Load("basemelody1") as AudioClip;
+        startSphereMelodyList[1] = Resources.Load("basemelody2") as AudioClip;
+        startSphereMelodyList[2] = Resources.Load("basemelody3") as AudioClip;
 
 
         // Lokal
-        objectOfMelody = GameObject.Find("Gitter_Karussell");
+        //objectOfMelody = GameObject.Find("Gitter_Karussell");
         objectOfMelody.AddComponent<AudioSource>();
         objectOfMelody.GetComponent<AudioSource>().clip = startSphereMelodyList[PlayerPrefs.GetInt("currentMelody")];
         objectOfMelody.GetComponents<AudioSource>()[0].loop = true;

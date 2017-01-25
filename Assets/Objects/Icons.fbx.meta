@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 110b090040625854589c4ab591a549de
+timeCreated: 1484398060
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CINEMA_4D_Editor
+    100002: "Deckfl\xE4che_1"
+    100004: "Deckfl\xE4che_1_2"
+    100006: "Deckfl\xE4che_1_3"
+    100008: "Deckfl\xE4che_1_4"
+    100010: "Deckfl\xE4che_1_5"
+    100012: "Deckfl\xE4che_2"
+    100014: "Deckfl\xE4che_2_2"
+    100016: "Deckfl\xE4che_2_3"
+    100018: "Deckfl\xE4che_2_4"
+    100020: "Deckfl\xE4che_2_5"
+    100022: //RootNode
+    100024: Sweep
+    100026: Sweep_1
+    100028: Sweep_2
+    100030: Sweep_3
+    100032: Sweep_4
+    100034: Sweep_5
+    100036: Sweep_6
+    100038: Sweep_7
+    100040: Sweep_8
+    100042: Sweep_9
+    400000: CINEMA_4D_Editor
+    400002: "Deckfl\xE4che_1"
+    400004: "Deckfl\xE4che_1_2"
+    400006: "Deckfl\xE4che_1_3"
+    400008: "Deckfl\xE4che_1_4"
+    400010: "Deckfl\xE4che_1_5"
+    400012: "Deckfl\xE4che_2"
+    400014: "Deckfl\xE4che_2_2"
+    400016: "Deckfl\xE4che_2_3"
+    400018: "Deckfl\xE4che_2_4"
+    400020: "Deckfl\xE4che_2_5"
+    400022: //RootNode
+    400024: Sweep
+    400026: Sweep_1
+    400028: Sweep_2
+    400030: Sweep_3
+    400032: Sweep_4
+    400034: Sweep_5
+    400036: Sweep_6
+    400038: Sweep_7
+    400040: Sweep_8
+    400042: Sweep_9
+    2300000: "Deckfl\xE4che_1"
+    2300002: "Deckfl\xE4che_1_2"
+    2300004: "Deckfl\xE4che_1_3"
+    2300006: "Deckfl\xE4che_1_4"
+    2300008: "Deckfl\xE4che_1_5"
+    2300010: "Deckfl\xE4che_2"
+    2300012: "Deckfl\xE4che_2_2"
+    2300014: "Deckfl\xE4che_2_3"
+    2300016: "Deckfl\xE4che_2_4"
+    2300018: "Deckfl\xE4che_2_5"
+    2300020: Sweep
+    2300022: Sweep_1
+    2300024: Sweep_2
+    2300026: Sweep_3
+    2300028: Sweep_4
+    2300030: Sweep_5
+    2300032: Sweep_6
+    2300034: Sweep_7
+    2300036: Sweep_8
+    2300038: Sweep_9
+    3300000: "Deckfl\xE4che_1"
+    3300002: "Deckfl\xE4che_1_2"
+    3300004: "Deckfl\xE4che_1_3"
+    3300006: "Deckfl\xE4che_1_4"
+    3300008: "Deckfl\xE4che_1_5"
+    3300010: "Deckfl\xE4che_2"
+    3300012: "Deckfl\xE4che_2_2"
+    3300014: "Deckfl\xE4che_2_3"
+    3300016: "Deckfl\xE4che_2_4"
+    3300018: "Deckfl\xE4che_2_5"
+    3300020: Sweep
+    3300022: Sweep_1
+    3300024: Sweep_2
+    3300026: Sweep_3
+    3300028: Sweep_4
+    3300030: Sweep_5
+    3300032: Sweep_6
+    3300034: Sweep_7
+    3300036: Sweep_8
+    3300038: Sweep_9
+    4300000: Sweep_9
+    4300002: "Deckfl\xE4che_1"
+    4300004: "Deckfl\xE4che_2"
+    4300006: Sweep_8
+    4300008: "Deckfl\xE4che_1_2"
+    4300010: "Deckfl\xE4che_2_2"
+    4300012: Sweep_7
+    4300014: Sweep_6
+    4300016: Sweep_5
+    4300018: "Deckfl\xE4che_1_3"
+    4300020: "Deckfl\xE4che_2_3"
+    4300022: Sweep_4
+    4300024: "Deckfl\xE4che_1_4"
+    4300026: "Deckfl\xE4che_2_4"
+    4300028: "Deckfl\xE4che_1_5"
+    4300030: "Deckfl\xE4che_2_5"
+    4300032: Sweep_3
+    4300034: Sweep_2
+    4300036: Sweep_1
+    4300038: Sweep
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
