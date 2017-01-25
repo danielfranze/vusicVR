@@ -20,10 +20,10 @@ public class playMelody : MonoBehaviour
 
         // Lokal
         //objectOfMelody = GameObject.Find("Gitter_Karussell");
-        objectOfMelody.AddComponent<AudioSource>();
+        /*objectOfMelody.AddComponent<AudioSource>();
         objectOfMelody.GetComponent<AudioSource>().clip = startSphereMelodyList[PlayerPrefs.GetInt("currentMelody")];
         objectOfMelody.GetComponents<AudioSource>()[0].loop = true;
-        objectOfMelody.GetComponents<AudioSource>()[0].Play();
+        objectOfMelody.GetComponents<AudioSource>()[0].Play();*/
     }
 	
 	// Update is called once per frame
