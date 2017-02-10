@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: f953c837bcca24c40ae5f4160cad8b48
+timeCreated: 1486569156
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CINEMA_4D_Editor
+    100002: ring_body_0
+    100004: ring_body_1
+    100006: ring_body_2
+    100008: ring_body_3
+    100010: ring_body_4
+    100012: ring_body_5
+    100014: ring_body_6
+    100016: ring_body_7
+    100018: ring_body_8
+    100020: //RootNode
+    400000: CINEMA_4D_Editor
+    400002: ring_body_0
+    400004: ring_body_1
+    400006: ring_body_2
+    400008: ring_body_3
+    400010: ring_body_4
+    400012: ring_body_5
+    400014: ring_body_6
+    400016: ring_body_7
+    400018: ring_body_8
+    400020: //RootNode
+    2300000: ring_body_0
+    2300002: ring_body_1
+    2300004: ring_body_2
+    2300006: ring_body_3
+    2300008: ring_body_4
+    2300010: ring_body_5
+    2300012: ring_body_6
+    2300014: ring_body_7
+    2300016: ring_body_8
+    3300000: ring_body_0
+    3300002: ring_body_1
+    3300004: ring_body_2
+    3300006: ring_body_3
+    3300008: ring_body_4
+    3300010: ring_body_5
+    3300012: ring_body_6
+    3300014: ring_body_7
+    3300016: ring_body_8
+    4300000: ring_body_0
+    4300002: ring_body_1
+    4300004: ring_body_2
+    4300006: ring_body_3
+    4300008: ring_body_4
+    4300010: ring_body_5
+    4300012: ring_body_6
+    4300014: ring_body_7
+    4300016: ring_body_8
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

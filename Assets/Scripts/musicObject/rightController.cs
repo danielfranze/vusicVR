@@ -1,5 +1,6 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 namespace main
 {
@@ -102,14 +103,14 @@ namespace main
             audioList1[0][7] = Resources.Load("aTechNote8") as AudioClip;
   
 
-            audioList1[1][0] = Resources.Load("bTechNote1") as AudioClip;
-            audioList1[1][1] = Resources.Load("bTechNote2") as AudioClip;
-            audioList1[1][2] = Resources.Load("bTechNote3") as AudioClip;
-            audioList1[1][3] = Resources.Load("bTechNote4") as AudioClip;
-            audioList1[1][4] = Resources.Load("bTechNote5") as AudioClip;
-            audioList1[1][5] = Resources.Load("bTechNote6") as AudioClip;
-            audioList1[1][6] = Resources.Load("bTechNote7") as AudioClip;
-            audioList1[1][7] = Resources.Load("bTechNote8") as AudioClip;
+            audioList1[1][0] = Resources.Load("fTechNote1") as AudioClip;
+            audioList1[1][1] = Resources.Load("fTechNote2") as AudioClip;
+            audioList1[1][2] = Resources.Load("fTechNote3") as AudioClip;
+            audioList1[1][3] = Resources.Load("fTechNote4") as AudioClip;
+            audioList1[1][4] = Resources.Load("fTechNote5") as AudioClip;
+            audioList1[1][5] = Resources.Load("fTechNote6") as AudioClip;
+            audioList1[1][6] = Resources.Load("fTechNote7") as AudioClip;
+            audioList1[1][7] = Resources.Load("fTechNote8") as AudioClip;
 
             audioList1[2][0] = Resources.Load("cBassnote1") as AudioClip;
             audioList1[2][1] = Resources.Load("cBassnote2") as AudioClip;
@@ -138,14 +139,14 @@ namespace main
             audioList1[4][6] = Resources.Load("eHighnote7") as AudioClip;
             audioList1[4][7] = Resources.Load("eHighnote8") as AudioClip;
 
-            audioList1[5][0] = Resources.Load("eHighnote1") as AudioClip;
-            audioList1[5][1] = Resources.Load("eHighnote2") as AudioClip;
-            audioList1[5][2] = Resources.Load("eHighnote3") as AudioClip;
-            audioList1[5][3] = Resources.Load("eHighnote4") as AudioClip;
-            audioList1[5][4] = Resources.Load("eHighnote5") as AudioClip;
-            audioList1[5][5] = Resources.Load("eHighnote6") as AudioClip;
-            audioList1[5][6] = Resources.Load("eHighnote7") as AudioClip;
-            audioList1[5][7] = Resources.Load("eHighnote8") as AudioClip; 
+            audioList1[5][0] = Resources.Load("bTechNote1") as AudioClip;
+            audioList1[5][1] = Resources.Load("bTechNote2") as AudioClip;
+            audioList1[5][2] = Resources.Load("bTechNote3") as AudioClip;
+            audioList1[5][3] = Resources.Load("bTechNote4") as AudioClip;
+            audioList1[5][4] = Resources.Load("bTechNote5") as AudioClip;
+            audioList1[5][5] = Resources.Load("bTechNote6") as AudioClip;
+            audioList1[5][6] = Resources.Load("bTechNote7") as AudioClip;
+            audioList1[5][7] = Resources.Load("bTechNote8") as AudioClip; 
 
             audioList1[6][0] = Resources.Load("TechNote1") as AudioClip;
             audioList1[6][1] = Resources.Load("TechNote2") as AudioClip;
@@ -370,6 +371,73 @@ namespace main
         }
 
 
+        private IEnumerator SetBodyAndHeadActiveAfter(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            foreach (int index in Enumerable.Range(0, 32))
+            {
+                GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+                GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            }
+        }
+
+        private IEnumerator SetHeadActiveAfter(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            foreach (int index in Enumerable.Range(0, 32))
+            {
+                GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("nicht aktiv_Querstangen") as Material;
+                GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            }
+        }
+
+        private IEnumerator SetBodyActiveAfter(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            foreach (int index in Enumerable.Range(0, 32))
+            {
+                GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+                GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("nicht aktiv_Querstangen") as Material;
+            }
+        }
+
+        void setHeadActive()
+        {
+            foreach (int index in Enumerable.Range(0, 32))
+            {
+                GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("nicht aktiv_Querstangen") as Material;
+                GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+                var numberOfSeconds = 0.07f;
+                StartCoroutine(SetHeadActiveAfter(numberOfSeconds));
+            }
+
+        }
+
+       void setBodyActive()
+        {
+            foreach (int index in Enumerable.Range(0, 32))
+            {
+                GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+                GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("nicht aktiv_Querstangen") as Material;
+            }
+            var numberOfSeconds = 0.07f;
+            StartCoroutine(SetBodyActiveAfter(numberOfSeconds));
+        }
+
+        void setBodyAndHeadActive()
+        {
+            foreach (int index in Enumerable.Range(0, 32))
+            {
+                GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+                GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            }
+            var numberOfSeconds = 0.07f;
+            StartCoroutine(SetBodyAndHeadActiveAfter(numberOfSeconds));
+        }
+
+
+
+
         void PadClicked(object sender, ClickedEventArgs e)
 
         {
@@ -432,6 +500,7 @@ namespace main
                     {
                         saveCircle();
                         possibilityCounter++;
+                    
 
                         if (possibilityCounter == possibilityList.Length)
                         {
@@ -440,6 +509,7 @@ namespace main
 
                         if (possibilityCounter == 0)
                         {
+                            setBodyActive();
                             currentController = controllerSphere;
                             controllerCube.SetActive(false);
                             controllerSphere.SetActive(true);
@@ -451,6 +521,7 @@ namespace main
                         }
                         if (possibilityCounter == 1)
                         {
+                            setHeadActive();
                             currentController = controllerCube;
                             controllerCube.SetActive(true);
                             controllerSphere.SetActive(false);
@@ -463,6 +534,7 @@ namespace main
 
                         if (possibilityCounter == 2)
                         {
+                            setBodyAndHeadActive();
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                             //createSphereIfPossible.createObjectIfPossible.collision = false;
                             currentController.GetComponent<BoxCollider>().enabled = false;
@@ -480,7 +552,7 @@ namespace main
                     {
                         saveCircle();
                         possibilityCounter--;
-
+                  
                         if (possibilityCounter < 0)
                         {
                             possibilityCounter = possibilityList.Length - 1;
@@ -488,6 +560,7 @@ namespace main
 
                         if (possibilityCounter == 0)
                         {
+                            setBodyActive();
                             currentController = controllerSphere;
                             controllerCube.SetActive(false);
                             controllerSphere.SetActive(true);
@@ -499,6 +572,7 @@ namespace main
                         }
                         if (possibilityCounter == 1)
                         {
+                            setHeadActive();
                             currentController = controllerCube;
                             controllerCube.SetActive(true);
                             controllerSphere.SetActive(false);
@@ -511,6 +585,7 @@ namespace main
 
                         if (possibilityCounter == 2)
                         {
+                            setBodyAndHeadActive();
                             //createSphereIfPossible.createObjectIfPossible.createSphereIsPossible = true;
                             // createSphereIfPossible.createObjectIfPossible.collision = false;
                             currentController.GetComponent<SphereCollider>().enabled = false;

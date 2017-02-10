@@ -11,6 +11,7 @@ public class activatedByTrigger : MonoBehaviour
 
     /// private Thread t1;
     private MeshRenderer mesh;
+    private Material saved_material;
     //private List<GameObject> objectList =  new List<GameObject>();
     private int sizeList = 0;
 
@@ -41,6 +42,7 @@ public class activatedByTrigger : MonoBehaviour
 
         if (col.gameObject.tag == "Trigger")
         {
+            saved_material = gameObject.GetComponent<Renderer>().material;
             mesh.material = Resources.Load("spherePlay") as Material;
 
             foreach (KeyValuePair<GameObject, Material> element in objectList)
@@ -70,15 +72,15 @@ public class activatedByTrigger : MonoBehaviour
     void OnTriggerExit(Collider col) {
         if (col.gameObject.tag == "Trigger")
         {
-            var numberOfSeconds = 2f;
+            var numberOfSeconds = 0.05f;
             StartCoroutine(SetMaterialAfter(numberOfSeconds));
             
         }
     }
     private IEnumerator SetMaterialAfter(float seconds)
     {
-        yield return new WaitForSeconds(0.2f);
-        mesh.material = Resources.Load("grid") as Material;
+        yield return new WaitForSeconds(seconds);
+        mesh.material = saved_material;
         foreach (KeyValuePair<GameObject, Material> element in objectList)
         {
             element.Key.GetComponent<MeshRenderer>().material = element.Value;

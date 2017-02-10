@@ -11,6 +11,7 @@ public class bottomRodLight : MonoBehaviour
 
     /// private Thread t1;
     private MeshRenderer mesh;
+    private Material saved_material;
 
     // Use this for initialization
     void Start()
@@ -31,6 +32,7 @@ public class bottomRodLight : MonoBehaviour
 
         if (col.gameObject.tag == "Trigger")
         {
+            saved_material = gameObject.GetComponent<Renderer>().material;
             mesh.material = Resources.Load("spherePlay") as Material;
         }
     }
@@ -39,15 +41,15 @@ public class bottomRodLight : MonoBehaviour
     {
         if (col.gameObject.tag == "Trigger")
         {
-            var numberOfSeconds = 2f;
+            var numberOfSeconds = 0.05f;
             StartCoroutine(SetMaterialAfter(numberOfSeconds));
 
         }
     }
     private IEnumerator SetMaterialAfter(float seconds)
     {
-        yield return new WaitForSeconds(0.2f);
-        mesh.material = Resources.Load("grid") as Material;
+        yield return new WaitForSeconds(seconds);
+        mesh.material = saved_material;
     }
 
 
