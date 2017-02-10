@@ -8,7 +8,17 @@ using System.Collections;
         private bool sphereOnGrid;
         private bool collision;
         private GameObject currentGrid;
+        private int fieldTag;
 
+        public int getFieldTag()
+        {
+            return fieldTag;
+        }
+
+        public void setFieldTag(int tag)
+        {
+            fieldTag = tag;
+        }
 
         public float getTransformPosition(int position)
         {

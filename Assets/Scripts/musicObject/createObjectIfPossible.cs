@@ -7,7 +7,6 @@ using System.Collections;
         private bool createSphereIsPossible;
         private bool collision;
 
-
         public bool getCreateSphereIfPossible()
         {
             return createSphereIsPossible;

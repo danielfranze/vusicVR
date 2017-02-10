@@ -22,84 +22,16 @@ public class playMusic : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider col)
+    /*void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Trigger")
         {   
             mesh.material = Resources.Load("spherePlay") as Material;
 
-
-            /* if (name == "Sound00")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound10")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound20")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound30")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-             if (name == "Sound40")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound50")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound60")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-             if (name == "Sound01")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound11")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound21")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound31")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-             if (name == "Sound41")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound51")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }
-
-             if (name == "Sound61")
-             {
-                 mesh.material = Resources.Load("spherePlay") as Material;
-             }*/
-
             audioSource.Play();
 
         }
-    }
+    }*/
 
 
     void OnTriggerExit(Collider col)

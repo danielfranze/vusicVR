@@ -31,21 +31,21 @@ using System.Linq;
         }
 
 
-    private Transform[] sensorPoints;
+        private Transform[] sensorPoints;
         private int currentPoint;
 
         // Use this for initialization
         void Start()
         {
             // Global
-            speed = 1.92755f;
+            speed = 2.5f;
 
 
             // Lokal
-            sensorPoints = new Transform[16];
-            foreach (int index in Enumerable.Range(0, 16))
+            sensorPoints = new Transform[32];
+            foreach (int index in Enumerable.Range(0, 32))
             {
-                sensorPoints[index] = GameObject.Find("Zylinder" + index).transform;
+                sensorPoints[index] = GameObject.Find("rod_"+ index + "_body").transform;
             }
             transform.position = sensorPoints[0].position;
         }

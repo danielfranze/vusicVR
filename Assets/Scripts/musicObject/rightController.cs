@@ -23,9 +23,9 @@ namespace main
         private Material[] colorList1 = new Material[7];
         private Material[] colorList2 = new Material[7];
 
-        private AudioClip[] audioList = new AudioClip[7];
-        private AudioClip[] audioList1 = new AudioClip[7];
-        private AudioClip[] audioList2 = new AudioClip[7];
+        private AudioClip[][] audioList = new AudioClip[7][];
+        private AudioClip[][] audioList1 = new AudioClip[7][];
+        private AudioClip[][] audioList2 = new AudioClip[7][];
 
         public GameObject colorCircle;
         public GameObject colorCircle1;
@@ -35,6 +35,7 @@ namespace main
         private int indexAudioList = 0;
         private int indexAudioList1 = 0;
         private int indexAudioList2 = 0;
+        private int toneList = 0;
 
         private int possibilityCounter = 0;
 
@@ -67,21 +68,101 @@ namespace main
             triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
             touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
 
-            audioList1[0] = Resources.Load("R_Kick") as AudioClip;
-            audioList1[1] = Resources.Load("HiHatOpen909") as AudioClip;
-            audioList1[2] = Resources.Load("TomHi909") as AudioClip;
-            audioList1[3] = Resources.Load("TomMid909") as AudioClip;
-            audioList1[4] = Resources.Load("Rim909") as AudioClip;
-            audioList1[5] = Resources.Load("Clap909") as AudioClip;
-            audioList1[6] = Resources.Load("Kick909_2") as AudioClip;
+            audioList[0] = new AudioClip[8];
+            audioList[1] = new AudioClip[8];
+            audioList[2] = new AudioClip[8];
+            audioList[3] = new AudioClip[8];
+            audioList[4] = new AudioClip[8];
+            audioList[5] = new AudioClip[8];
+            audioList[6] = new AudioClip[8];
 
-            audioList2[0] = Resources.Load("aTechNote1") as AudioClip;
-            audioList2[1] = Resources.Load("aTechNote2") as AudioClip;
-            audioList2[2] = Resources.Load("aTechNote3") as AudioClip;
-            audioList2[3] = Resources.Load("aTechNote4") as AudioClip;
-            audioList2[4] = Resources.Load("aTechNote5") as AudioClip;
-            audioList2[5] = Resources.Load("aTechNote6") as AudioClip;
-            audioList2[6] = Resources.Load("aTechNote7") as AudioClip;
+            audioList1[0] = new AudioClip[8];
+            audioList1[1] = new AudioClip[8];
+            audioList1[2] = new AudioClip[8];
+            audioList1[3] = new AudioClip[8];
+            audioList1[4] = new AudioClip[8];
+            audioList1[5] = new AudioClip[8];
+            audioList1[6] = new AudioClip[8];
+
+            audioList2[0] = new AudioClip[8];
+            audioList2[1] = new AudioClip[8];
+            audioList2[2] = new AudioClip[8];
+            audioList2[3] = new AudioClip[8];
+            audioList2[4] = new AudioClip[8];
+            audioList2[5] = new AudioClip[8];
+            audioList2[6] = new AudioClip[8];
+
+            audioList1[0][0] = Resources.Load("aTechNote1") as AudioClip;
+            audioList1[0][1] = Resources.Load("aTechNote2") as AudioClip;
+            audioList1[0][2] = Resources.Load("aTechNote3") as AudioClip;
+            audioList1[0][3] = Resources.Load("aTechNote4") as AudioClip;
+            audioList1[0][4] = Resources.Load("aTechNote5") as AudioClip;
+            audioList1[0][5] = Resources.Load("aTechNote7") as AudioClip;
+            audioList1[0][6] = Resources.Load("aTechNote6") as AudioClip;
+            audioList1[0][7] = Resources.Load("aTechNote8") as AudioClip;
+  
+
+            audioList1[1][0] = Resources.Load("bTechNote1") as AudioClip;
+            audioList1[1][1] = Resources.Load("bTechNote2") as AudioClip;
+            audioList1[1][2] = Resources.Load("bTechNote3") as AudioClip;
+            audioList1[1][3] = Resources.Load("bTechNote4") as AudioClip;
+            audioList1[1][4] = Resources.Load("bTechNote5") as AudioClip;
+            audioList1[1][5] = Resources.Load("bTechNote6") as AudioClip;
+            audioList1[1][6] = Resources.Load("bTechNote7") as AudioClip;
+            audioList1[1][7] = Resources.Load("bTechNote8") as AudioClip;
+
+            audioList1[2][0] = Resources.Load("cBassnote1") as AudioClip;
+            audioList1[2][1] = Resources.Load("cBassnote2") as AudioClip;
+            audioList1[2][2] = Resources.Load("cBassnote3") as AudioClip;
+            audioList1[2][3] = Resources.Load("cBassnote4") as AudioClip;
+            audioList1[2][4] = Resources.Load("cBassnote5") as AudioClip;
+            audioList1[2][5] = Resources.Load("cBassnote6") as AudioClip;
+            audioList1[2][6] = Resources.Load("cBassnote7") as AudioClip;
+            audioList1[2][7] = Resources.Load("cBassnote8") as AudioClip;
+
+            audioList1[3][0] = Resources.Load("dHighnote1") as AudioClip;
+            audioList1[3][1] = Resources.Load("dHighnote2") as AudioClip;
+            audioList1[3][2] = Resources.Load("dHighnote3") as AudioClip;
+            audioList1[3][3] = Resources.Load("dHighnote4") as AudioClip;
+            audioList1[3][4] = Resources.Load("dHighnote5") as AudioClip;
+            audioList1[3][5] = Resources.Load("dHighnote6") as AudioClip;
+            audioList1[3][6] = Resources.Load("dHighnote7") as AudioClip;
+            audioList1[3][7] = Resources.Load("dHighnote8") as AudioClip;
+
+            audioList1[4][0] = Resources.Load("eHighnote1") as AudioClip;
+            audioList1[4][1] = Resources.Load("eHighnote2") as AudioClip;
+            audioList1[4][2] = Resources.Load("eHighnote3") as AudioClip;
+            audioList1[4][3] = Resources.Load("eHighnote4") as AudioClip;
+            audioList1[4][4] = Resources.Load("eHighnote5") as AudioClip;
+            audioList1[4][5] = Resources.Load("eHighnote6") as AudioClip;
+            audioList1[4][6] = Resources.Load("eHighnote7") as AudioClip;
+            audioList1[4][7] = Resources.Load("eHighnote8") as AudioClip;
+
+            audioList1[5][0] = Resources.Load("eHighnote1") as AudioClip;
+            audioList1[5][1] = Resources.Load("eHighnote2") as AudioClip;
+            audioList1[5][2] = Resources.Load("eHighnote3") as AudioClip;
+            audioList1[5][3] = Resources.Load("eHighnote4") as AudioClip;
+            audioList1[5][4] = Resources.Load("eHighnote5") as AudioClip;
+            audioList1[5][5] = Resources.Load("eHighnote6") as AudioClip;
+            audioList1[5][6] = Resources.Load("eHighnote7") as AudioClip;
+            audioList1[5][7] = Resources.Load("eHighnote8") as AudioClip; 
+
+            audioList1[6][0] = Resources.Load("TechNote1") as AudioClip;
+            audioList1[6][1] = Resources.Load("TechNote2") as AudioClip;
+            audioList1[6][2] = Resources.Load("TechNote3") as AudioClip;
+            audioList1[6][3] = Resources.Load("TechNote4") as AudioClip;
+            audioList1[6][4] = Resources.Load("TechNote5") as AudioClip;
+            audioList1[6][5] = Resources.Load("TechNote6") as AudioClip;
+            audioList1[6][6] = Resources.Load("TechNote7") as AudioClip;
+            audioList1[6][7] = Resources.Load("TechNote8") as AudioClip;
+
+            audioList2[0][0] = Resources.Load("Kick909") as AudioClip;
+            audioList2[1][0] = Resources.Load("Snare909") as AudioClip;
+            audioList2[2][0] = Resources.Load("Rim909") as AudioClip;
+            audioList2[3][0] = Resources.Load("TomLow909") as AudioClip;
+            audioList2[4][0] = Resources.Load("Crash909") as AudioClip;
+            audioList2[5][0] = Resources.Load("HiHatClosed909") as AudioClip;
+            audioList2[6][0] = Resources.Load("HiHatOpen909") as AudioClip;
 
             colorList1[0] = Resources.Load("1lila") as Material;
             colorList1[1] = Resources.Load("1rot") as Material;
@@ -163,37 +244,63 @@ namespace main
 
         void createSphere()
         {
-            if(currentColorCircle == 0)
+            if (currentColorCircle == 0)
             {
-                actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                actorSphere.GetComponent<SphereCollider>().radius = 1f;
-                actorSphere.gameObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-                actorSphere.GetComponent<SphereCollider>().isTrigger = true;
+                if (currentController.transform.position[1] < 3.48f)
+                {
+                    actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    actorSphere.GetComponent<SphereCollider>().radius = 1f;
+                    actorSphere.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    actorSphere.GetComponent<SphereCollider>().isTrigger = true;
+
+
+                    actorSphere.transform.position = new Vector3(currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(0),
+                                                         currentController.transform.position[1],
+                                                         currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(2));
+                    actorSphere.AddComponent<AudioSource>();
+                    Debug.Log("Tonhöhe: " + currentController.GetComponent<sphereIsOnGrid>().getFieldTag());
+                    actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList][currentController.GetComponent<sphereIsOnGrid>().getFieldTag()];
+                } else
+                {
+                    return;
+                }
             } else
             {
-                actorSphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                actorSphere.gameObject.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
-                actorSphere.gameObject.transform.Rotate(new Vector3(0, 0, 0));
-                actorSphere.GetComponent<BoxCollider>().size = new Vector3(2f, 2f, 2f);
-                actorSphere.GetComponent<BoxCollider>().isTrigger = true;
+                if (currentController.transform.position[1] > 3.5f)
+                {
+                    actorSphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    actorSphere.gameObject.transform.localScale = new Vector3(0.09f, 0.09f, 0.09f);
+                    actorSphere.gameObject.transform.Rotate(new Vector3(0, 0, 0));
+                    actorSphere.GetComponent<BoxCollider>().size = new Vector3(2f, 2f, 2f);
+                    actorSphere.GetComponent<BoxCollider>().isTrigger = true;
+
+                    actorSphere.transform.position = new Vector3(currentController.transform.position[0],
+                                                        currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(1),
+                                                        currentController.transform.position[2]);
+                    actorSphere.AddComponent<AudioSource>();
+                    actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList][0];
+
+
+                }
+                else
+                {
+                    return;
             }
+        }
             
             //Debug.Log(audioList[0]);
             //actorSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             
-            actorSphere.transform.position = new Vector3(currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(0), 
-                                                         currentController.transform.position[1],
-                                                         currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(2));
+            
 
             actorSphere.AddComponent<Rigidbody>();
             actorSphere.GetComponent<Rigidbody>().useGravity = false;
             actorSphere.GetComponent<Rigidbody>().isKinematic = true;
             actorSphere.name = "Sound" + indexAudioList + currentColorCircle; 
             actorSphere.tag = "musicSphere";
-            actorSphere.AddComponent<AudioSource>();
-            actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList];
+            
 
-            actorSphere.AddComponent<playMusic>();
+            //actorSphere.AddComponent<playMusic>();
             actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
             actorSphere.GetComponents<AudioSource>()[0].Play();
         }

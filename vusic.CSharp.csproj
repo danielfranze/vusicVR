@@ -82,7 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\musicObject\activatedByTrigger.cs" />
+    <Compile Include="Assets\Scripts\musicObject\bottomRodLight.cs" />
     <Compile Include="Assets\Scripts\musicObject\createObjectIfPossible.cs" />
+    <Compile Include="Assets\Scripts\musicObject\fieldHight.cs" />
     <Compile Include="Assets\Scripts\musicObject\leftController.cs" />
     <Compile Include="Assets\Scripts\musicObject\movePointSensor.cs" />
     <Compile Include="Assets\Scripts\musicObject\playMelody.cs" />
