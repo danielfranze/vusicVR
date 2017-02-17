@@ -4,11 +4,14 @@ using System.Collections;
 
 public class leftController : MonoBehaviour
 {
+    private AudioClip myAudioClip;
+    private SteamVR_TrackedController device;
     private SteamVR_Controller.Device controller;
     private Valve.VR.EVRButtonId touchPad;
     private SteamVR_TrackedObject trackedObject;
-
+    private bool rec = false;
     // Use this for initialization
+
     void Start ()
     {
 
@@ -16,6 +19,9 @@ public class leftController : MonoBehaviour
         touchPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
         trackedObject = GetComponent<SteamVR_TrackedObject>();
         //GameObject.FindWithTag("mainRightController").SetActive(true);
+        //controller = SteamVR_Controller.Input((int)trackedObject.index);
+        device = GetComponent<SteamVR_TrackedController>();
+        device.TriggerClicked += TriggerClicked;
 
     }
 
@@ -51,6 +57,32 @@ public class leftController : MonoBehaviour
             {
                 GameObject.Find("Trigger").GetComponent<movePointSensor>().setSpeed(0);
             }
+
+
         }
+
+   
+    }
+
+    void TriggerClicked(object sender, ClickedEventArgs e)
+    {
+        Debug.Log("TRIGGER");
+        
+        if(rec == false)
+        {
+            Debug.Log("Rec");
+            myAudioClip = Microphone.Start(null, false, 10, 44100);
+            rec = true;
+        } else
+        {
+            Debug.Log("Save");
+            SavWav.Save("myfile", myAudioClip);
+            rec = false;
+
+        }
+
+
+
+
     }
 }

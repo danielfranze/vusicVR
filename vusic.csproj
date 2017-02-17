@@ -81,6 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\musicObject\SavWav.cs" />
     <Compile Include="Assets\Scripts\musicObject\SetCollisionIfVertical.cs" />
     <Compile Include="Assets\Scripts\musicObject\activatedByTrigger.cs" />
     <Compile Include="Assets\Scripts\musicObject\bottomRodLight.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Assets\Scripts\musicObject\movePointSensor.cs" />
     <Compile Include="Assets\Scripts\musicObject\playMelody.cs" />
     <Compile Include="Assets\Scripts\musicObject\playMusic.cs" />
-    <Compile Include="Assets\Scripts\musicObject\recordMusic.cs" />
     <Compile Include="Assets\Scripts\musicObject\rightController.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereDestroy.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereHelper.cs" />
