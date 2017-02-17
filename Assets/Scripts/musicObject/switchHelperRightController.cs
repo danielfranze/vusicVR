@@ -46,6 +46,7 @@ namespace helper
                 }
             }
             GameObject.FindWithTag("mainRightController").GetComponent<rightController>().changeColorControllerSphere();
+            GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
         }
 
         public void rightSwitcherIfSwipe()

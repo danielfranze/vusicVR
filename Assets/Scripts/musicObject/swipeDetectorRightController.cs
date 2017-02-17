@@ -90,7 +90,7 @@ public class swipeDetectorRightController : MonoBehaviour
             Vector2 swipeVector = endPosition - mStartPosition;
 
             float velocity = swipeVector.magnitude / deltaTime;
-            Debug.Log(velocity);
+
             if (velocity > mMinVelocity &&
                 swipeVector.magnitude > mMinSwipeDist)
             {

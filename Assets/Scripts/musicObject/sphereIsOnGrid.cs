@@ -68,18 +68,6 @@ public class sphereIsOnGrid : MonoBehaviour
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     // Use this for initialization
     void Start()
         {
@@ -96,8 +84,6 @@ public class sphereIsOnGrid : MonoBehaviour
 
         void OnTriggerEnter(Collider col)
         {
-
-
             if (col.gameObject.tag == "Grid")
             {
                 currentGrid = col.gameObject;
@@ -106,6 +92,7 @@ public class sphereIsOnGrid : MonoBehaviour
             if (col.gameObject.tag == "musicSphere")
             {
                 collision = true;
+                Debug.Log("collision Enter: " + collision);
             }
 
 
@@ -131,15 +118,6 @@ public class sphereIsOnGrid : MonoBehaviour
             collision = false;
             sphereOnGrid = true;
         }
-        else if (col.gameObject.name == "Trigger")
-        {
-            Debug.Log("Trigger Enter!");
-        }
-        else
-        {
-            //collision = true;
-            Debug.Log("Else Enter!");
-        }
 
     }
 
@@ -153,6 +131,7 @@ public class sphereIsOnGrid : MonoBehaviour
             if (col.gameObject.tag == "musicSphere")
             {
                 collision = false;
+                Debug.Log("collision Exit: "+ collision);
             }
 
         List<string> list_body = new List<string>();
@@ -186,22 +165,17 @@ public class sphereIsOnGrid : MonoBehaviour
             }
         }
 
-        /*
-        if (list.Contains(col.gameObject.name))
-        {
-            Debug.Log("Hello_123");
-            col.gameObject.GetComponent<Renderer>().material = Resources.Load("grid") as Material;
-        }*/
-
     }
 
 
         void OnTriggerStay(Collider col)
         {
+        // col.gameObject.tag == "horizontGrid" 
             if (col.gameObject.tag == "musicSphere")
             {
                 collision = true;
             }
+
             if (col.gameObject.tag == "Grid")
             {
                 sphereOnGrid = true;

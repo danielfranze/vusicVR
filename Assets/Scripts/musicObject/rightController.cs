@@ -228,8 +228,6 @@ namespace main
 
             //GameObject.Find("controllerSphere").GetComponent<createObjectIfPossible>().getCollision()
 
-            
-
             if (controller.GetPress(triggerButton) && !(currentController.GetComponent<sphereIsOnGrid>().getCollision()) && currentController.GetComponent<sphereIsOnGrid>().getSphereOnGrid())
             {
                 controller.TriggerHapticPulse(1000);
@@ -275,7 +273,7 @@ namespace main
                 {
                     actorSphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     actorSphere.gameObject.transform.localScale = new Vector3(0.09f, 0.09f, 0.09f);
-                    actorSphere.gameObject.transform.Rotate(new Vector3(0, 0, 0));
+                    actorSphere.gameObject.transform.Rotate(new Vector3(currentController.transform.rotation[0], currentController.transform.rotation[1], currentController.transform.rotation[2]));
                     actorSphere.GetComponent<BoxCollider>().size = new Vector3(2f, 2f, 2f);
                     actorSphere.GetComponent<BoxCollider>().isTrigger = true;
 
@@ -305,7 +303,8 @@ namespace main
             actorSphere.tag = "musicSphere";
             
 
-            //actorSphere.AddComponent<playMusic>();
+            actorSphere.AddComponent<changeFieldColor>();
+            actorSphere.AddComponent<sphereHelper>();
             actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
             actorSphere.GetComponents<AudioSource>()[0].Play();
         }

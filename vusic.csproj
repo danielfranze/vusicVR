@@ -81,8 +81,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\musicObject\SetCollisionIfVertical.cs" />
     <Compile Include="Assets\Scripts\musicObject\activatedByTrigger.cs" />
     <Compile Include="Assets\Scripts\musicObject\bottomRodLight.cs" />
+    <Compile Include="Assets\Scripts\musicObject\cameraRig.cs" />
+    <Compile Include="Assets\Scripts\musicObject\changeFieldColor.cs" />
     <Compile Include="Assets\Scripts\musicObject\createObjectIfPossible.cs" />
     <Compile Include="Assets\Scripts\musicObject\fieldHight.cs" />
     <Compile Include="Assets\Scripts\musicObject\leftController.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Assets\Scripts\musicObject\playMusic.cs" />
     <Compile Include="Assets\Scripts\musicObject\rightController.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereDestroy.cs" />
+    <Compile Include="Assets\Scripts\musicObject\sphereHelper.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereIsOnGrid.cs" />
     <Compile Include="Assets\Scripts\musicObject\swipeDetectorRightController.cs" />
     <Compile Include="Assets\Scripts\musicObject\switchHelperRightController.cs" />
