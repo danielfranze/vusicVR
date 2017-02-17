@@ -103,14 +103,14 @@ namespace main
             audioList1[0][7] = Resources.Load("aTechNote8") as AudioClip;
   
 
-            audioList1[1][0] = Resources.Load("fTechNote1") as AudioClip;
-            audioList1[1][1] = Resources.Load("fTechNote2") as AudioClip;
-            audioList1[1][2] = Resources.Load("fTechNote3") as AudioClip;
-            audioList1[1][3] = Resources.Load("fTechNote4") as AudioClip;
-            audioList1[1][4] = Resources.Load("fTechNote5") as AudioClip;
-            audioList1[1][5] = Resources.Load("fTechNote6") as AudioClip;
-            audioList1[1][6] = Resources.Load("fTechNote7") as AudioClip;
-            audioList1[1][7] = Resources.Load("fTechNote8") as AudioClip;
+            audioList1[1][0] = Resources.Load("gTechNote1") as AudioClip;
+            audioList1[1][1] = Resources.Load("gTechNote2") as AudioClip;
+            audioList1[1][2] = Resources.Load("gTechNote3") as AudioClip;
+            audioList1[1][3] = Resources.Load("gTechNote4") as AudioClip;
+            audioList1[1][4] = Resources.Load("gTechNote5") as AudioClip;
+            audioList1[1][5] = Resources.Load("gTechNote6") as AudioClip;
+            audioList1[1][6] = Resources.Load("gTechNote7") as AudioClip;
+            audioList1[1][7] = Resources.Load("gTechNote8") as AudioClip;
 
             audioList1[2][0] = Resources.Load("cBassnote1") as AudioClip;
             audioList1[2][1] = Resources.Load("cBassnote2") as AudioClip;
@@ -242,6 +242,10 @@ namespace main
 
         }
 
+        public int getPossibilityCounter()
+        {
+            return possibilityCounter;
+        }
 
         void createSphere()
         {

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 
-
-    public class sphereIsOnGrid : MonoBehaviour
+public class sphereIsOnGrid : MonoBehaviour
     {
         private bool sphereCreater;
         private bool sphereOnGrid;
@@ -95,6 +96,8 @@ using System.Collections;
 
         void OnTriggerEnter(Collider col)
         {
+
+
             if (col.gameObject.tag == "Grid")
             {
                 currentGrid = col.gameObject;
@@ -104,8 +107,43 @@ using System.Collections;
             {
                 collision = true;
             }
+
+
+        /* Test BUG FIX */
+        List<string> list_body = new List<string>();
+        List<string> list_head = new List<string>();
+        foreach (int index in Enumerable.Range(0, 32))
+        {
+
+            list_body.Add("rod_" + index + "_body");
+            list_head.Add("rod_" + index + "_head");
+
+            //GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            //GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+        }
+        if (list_body.Contains(col.gameObject.name) && GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 0)
+        {
+            collision = false;
+            sphereOnGrid = true;
+        }
+        else if (list_head.Contains(col.gameObject.name) && GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 1)
+        {
+            collision = false;
+            sphereOnGrid = true;
+        }
+        else if (col.gameObject.name == "Trigger")
+        {
+            Debug.Log("Trigger Enter!");
+        }
+        else
+        {
+            //collision = true;
+            Debug.Log("Else Enter!");
         }
 
+    }
+
+        //Material saved_material;
         void OnTriggerExit(Collider col)
         {
             if (col.gameObject.tag == "Grid")
@@ -117,8 +155,45 @@ using System.Collections;
                 collision = false;
             }
 
+        List<string> list_body = new List<string>();
+        List<string> list_head = new List<string>();
+        foreach (int index in Enumerable.Range(0, 32))
+        {
+
+            list_body.Add("rod_" + index + "_body");
+            list_head.Add("rod_" + index + "_head");
+
+            //GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            //GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+        }
+
+
+        if (list_body.Contains(col.gameObject.name))
+        {
+            //Debug.Log("Hello");
+            //saved_material = col.gameObject.GetComponent<Renderer>().material as Material;
+            if (GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 0)
+            {
+                col.gameObject.GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            }
 
         }
+        if (list_head.Contains(col.gameObject.name))
+        {
+            if (GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 1)
+            {
+                col.gameObject.GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            }
+        }
+
+        /*
+        if (list.Contains(col.gameObject.name))
+        {
+            Debug.Log("Hello_123");
+            col.gameObject.GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+        }*/
+
+    }
 
 
         void OnTriggerStay(Collider col)
@@ -131,5 +206,41 @@ using System.Collections;
             {
                 sphereOnGrid = true;
             }
+
+       
+        List<string> list_body = new List<string>();
+        List<string> list_head = new List<string>();
+        foreach (int index in Enumerable.Range(0, 32))
+        {
+
+            list_body.Add("rod_" + index + "_body");
+            list_head.Add("rod_" + index + "_head");
+
+            //GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+            //GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
         }
+
+        if (list_body.Contains(col.gameObject.name))
+        {
+            //Debug.Log("Hello");
+            //saved_material = col.gameObject.GetComponent<Renderer>().material as Material;
+            if(GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 0)
+            {
+                col.gameObject.GetComponent<Renderer>().material = GameObject.Find("controllerSphere").GetComponent<Renderer>().material;
+            }
+
+        }
+        if (list_head.Contains(col.gameObject.name))
+        {
+            if (GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 1)
+            {
+                col.gameObject.GetComponent<Renderer>().material = GameObject.Find("controllerCube").GetComponent<Renderer>().material;
+            }
+        }
+
+
+
+
+
+    }
     }

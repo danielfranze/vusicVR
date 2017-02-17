@@ -27,26 +27,27 @@ public class leftController : MonoBehaviour
         if (controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
 
-            if (GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= 3f || GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= -3f)
+            /*if (GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= 3f || GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= -3f)
             {
                 //Debug.Log("speed nicht ok");
 
-            }
-            if (controller.GetAxis(touchPad).y <= -0.5f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= -4f)
+            }*/
+            if (controller.GetAxis(touchPad).x <= -0.75f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() >= 1.0f) //left langsamer
             {
                 GameObject.Find("Trigger").GetComponent<movePointSensor>().subSpeed(0.0175f);
-                GameObject.Find("Gitter_Karussell").GetComponents<AudioSource>()[0].pitch -= 0.025f;
-                //Debug.Log(movePointSensorNamespace.movePointSensor.speed);
             }
 
-            if (controller.GetAxis(touchPad).y >= 0.5f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= 4f)
+            if (controller.GetAxis(touchPad).x >= 0.75f && GameObject.Find("Trigger").GetComponent<movePointSensor>().getSpeed() <= 3.5f) //right schneller 
             {
                 GameObject.Find("Trigger").GetComponent<movePointSensor>().addSpeed(0.0175f);
-                GameObject.Find("Gitter_Karussell").GetComponents<AudioSource>()[0].pitch += 0.025f;
-
             }
 
-            if (controller.GetAxis(touchPad).y < 0.5f && controller.GetAxis(touchPad).y > -0.5f)
+            if (controller.GetAxis(touchPad).y >= 0.75f) //up starten
+            {
+                GameObject.Find("Trigger").GetComponent<movePointSensor>().setSpeed(2.5f);
+            }
+
+            if (controller.GetAxis(touchPad).y <= -0.75f) // down stopp
             {
                 GameObject.Find("Trigger").GetComponent<movePointSensor>().setSpeed(0);
             }
