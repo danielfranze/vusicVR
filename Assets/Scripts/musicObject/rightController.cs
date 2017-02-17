@@ -240,6 +240,11 @@ namespace main
 
         }
 
+        public void vibrateController()
+        {
+            controller.TriggerHapticPulse(1000);
+        }
+
         public int getPossibilityCounter()
         {
             return possibilityCounter;
@@ -261,7 +266,7 @@ namespace main
                                                          currentController.transform.position[1],
                                                          currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(2));
                     actorSphere.AddComponent<AudioSource>();
-                    Debug.Log("Tonhöhe: " + currentController.GetComponent<sphereIsOnGrid>().getFieldTag());
+                    //Debug.Log("Tonhöhe: " + currentController.GetComponent<sphereIsOnGrid>().getFieldTag());
                     actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList][currentController.GetComponent<sphereIsOnGrid>().getFieldTag()];
                 } else
                 {

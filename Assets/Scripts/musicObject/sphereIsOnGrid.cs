@@ -79,7 +79,34 @@ public class sphereIsOnGrid : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-      
+            // FIX
+            if(sphereOnGrid == false)
+            {
+                List<string> list_body = new List<string>();
+                List<string> list_head = new List<string>();
+                foreach (int index in Enumerable.Range(0, 32))
+                {
+
+                    list_body.Add("rod_" + index + "_body");
+                    list_head.Add("rod_" + index + "_head");
+
+                //GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+                //GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+
+
+                if (GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 0)
+                {
+                    GameObject.Find("rod_" + index + "_body").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+
+                }
+                else if (GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 1)
+                {
+                    GameObject.Find("rod_" + index + "_head").GetComponent<Renderer>().material = Resources.Load("grid") as Material;
+
+                }
+                }
+
+            }
         }
 
         void OnTriggerEnter(Collider col)
@@ -92,7 +119,7 @@ public class sphereIsOnGrid : MonoBehaviour
             if (col.gameObject.tag == "musicSphere")
             {
                 collision = true;
-                Debug.Log("collision Enter: " + collision);
+                //Debug.Log("collision Enter: " + collision);
             }
 
 
@@ -112,11 +139,13 @@ public class sphereIsOnGrid : MonoBehaviour
         {
             collision = false;
             sphereOnGrid = true;
+            GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().vibrateController();
         }
         else if (list_head.Contains(col.gameObject.name) && GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().getPossibilityCounter() == 1)
         {
             collision = false;
             sphereOnGrid = true;
+            GameObject.FindWithTag("mainRightController").GetComponent<main.rightController>().vibrateController();
         }
 
     }
@@ -131,7 +160,7 @@ public class sphereIsOnGrid : MonoBehaviour
             if (col.gameObject.tag == "musicSphere")
             {
                 collision = false;
-                Debug.Log("collision Exit: "+ collision);
+                //Debug.Log("collision Exit: "+ collision);
             }
 
         List<string> list_body = new List<string>();

@@ -6,10 +6,9 @@ public class cameraRig : MonoBehaviour {
     private Vector3 position; 
 	// Use this for initialization
 	void Start () {
-        position.x = 0.3f;
-        position.y = 1.05f;
-        position.z = -0.03f;
-        
+        position = GameObject.Find("GameObject").transform.position;
+
+
     }
 	
 	// Update is called once per frame
@@ -19,10 +18,11 @@ public class cameraRig : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.name.Substring(0, 5) == "field")
+        //Debug.Log("had collision");
+        /*if(col.gameObject.name.Substring(0, 5) == "field")
         {
-            GameObject.Find("[CameraRig]").transform.position = position;
+            GameObject.Find("GameObject").transform.position = position;
             Debug.Log("position wo ich hin bin:" + GameObject.Find("[CameraRig]").transform.position);
-        }
+        }*/
     }
 }

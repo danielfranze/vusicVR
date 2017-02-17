@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\musicObject\movePointSensor.cs" />
     <Compile Include="Assets\Scripts\musicObject\playMelody.cs" />
     <Compile Include="Assets\Scripts\musicObject\playMusic.cs" />
+    <Compile Include="Assets\Scripts\musicObject\recordMusic.cs" />
     <Compile Include="Assets\Scripts\musicObject\rightController.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereDestroy.cs" />
     <Compile Include="Assets\Scripts\musicObject\sphereHelper.cs" />

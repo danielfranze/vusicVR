@@ -69,7 +69,7 @@ public class swipeDetectorRightController : MonoBehaviour
             trackingSwipe = false;
             trackingSwipe = true;
             checkSwipe = true;
-            Debug.Log("Tracking Finish");
+            //Debug.Log("Tracking Finish");
         }
         else if (trackingSwipe)
         {
@@ -145,7 +145,7 @@ public class swipeDetectorRightController : MonoBehaviour
 
     private void OnSwipeLeft()
     {
-        Debug.Log("Swipe Left");
+        //Debug.Log("Swipe Left");
         mMessageIndex = 1;
         //main.rightController.leftSwitcherIfSwipe();
         GameObject.FindWithTag("mainRightController").GetComponent<helper.switchHelperRightController>().leftSwitcherIfSwipe();
@@ -154,7 +154,7 @@ public class swipeDetectorRightController : MonoBehaviour
 
     private void OnSwipeRight()
     {
-        Debug.Log("Swipe right");
+        //Debug.Log("Swipe right");
         mMessageIndex = 2;
         //main.rightController.rightSwitcherIfSwipe();
         GameObject.FindWithTag("mainRightController").GetComponent<helper.switchHelperRightController>().rightSwitcherIfSwipe();
@@ -163,13 +163,14 @@ public class swipeDetectorRightController : MonoBehaviour
 
     private void OnSwipeTop()
     {
-        Debug.Log("Swipe Top");
+        //Debug.Log("Swipe Top");
         mMessageIndex = 3;
+        //GameObject.FindWithTag("mainRightController")
     }
 
     private void OnSwipeBottom()
     {
-        Debug.Log("Swipe Bottom");
+        //Debug.Log("Swipe Bottom");
         mMessageIndex = 4;
     }
 }
