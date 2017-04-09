@@ -206,6 +206,8 @@ namespace main
             sphereDestroyer.SetActive(false);
             colorCircle2.SetActive(false);
 
+            currentController.GetComponents<AudioSource>()[0].Play();
+
         }
 
         //Update is called once per frame
@@ -266,7 +268,7 @@ namespace main
                                                          currentController.transform.position[1],
                                                          currentController.GetComponent<sphereIsOnGrid>().getTransformPosition(2));
                     actorSphere.AddComponent<AudioSource>();
-                    //Debug.Log("Tonhöhe: " + currentController.GetComponent<sphereIsOnGrid>().getFieldTag());
+                    Debug.Log("Tonhöhe: " + currentController.GetComponent<sphereIsOnGrid>().getFieldTag());
                     actorSphere.GetComponent<AudioSource>().clip = audioList[indexAudioList][currentController.GetComponent<sphereIsOnGrid>().getFieldTag()];
                 } else
                 {
@@ -278,8 +280,8 @@ namespace main
                 {
                     actorSphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     actorSphere.gameObject.transform.localScale = new Vector3(0.09f, 0.09f, 0.09f);
-                    actorSphere.gameObject.transform.Rotate(new Vector3(currentController.transform.rotation[0], currentController.transform.rotation[1], currentController.transform.rotation[2]));
-                    actorSphere.GetComponent<BoxCollider>().size = new Vector3(2f, 2f, 2f);
+                    actorSphere.gameObject.transform.Rotate(new Vector3(currentController.GetComponent<sphereIsOnGrid>().getTransformRotationX()*100, currentController.GetComponent<sphereIsOnGrid>().getTransformRotationY()*100, currentController.GetComponent<sphereIsOnGrid>().getTransformRotationZ()*100));
+                    actorSphere.GetComponent<BoxCollider>().size = new Vector3(2.5f, 2.5f, 2.5f);
                     actorSphere.GetComponent<BoxCollider>().isTrigger = true;
 
                     actorSphere.transform.position = new Vector3(currentController.transform.position[0],
@@ -311,7 +313,7 @@ namespace main
             actorSphere.AddComponent<changeFieldColor>();
             actorSphere.AddComponent<sphereHelper>();
             actorSphere.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
-            actorSphere.GetComponents<AudioSource>()[0].Play();
+            //actorSphere.GetComponents<AudioSource>()[0].Play();
         }
 
 
@@ -376,6 +378,10 @@ namespace main
         public void changeColorControllerSphere()
         {
             currentController.GetComponent<MeshRenderer>().material = colorList[indexAudioList];
+        }
+        public AudioClip getAudioClip()
+        {
+            return audioList[indexAudioList][0];
         }
 
 
@@ -477,6 +483,8 @@ namespace main
                             }
                         }
                     GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
+                    currentController.GetComponent<AudioSource>().clip = audioList[indexAudioList][0];
+                    currentController.GetComponents<AudioSource>()[0].Play();
                 }
 
                     if (controller.GetAxis(touchPad).x < -0.5f && (sphereDestroyer.gameObject.activeSelf == false)) //left
@@ -501,10 +509,13 @@ namespace main
                                 GameObject.Find("SphereRot" + i).transform.position = GameObject.Find("SphereRot" + k).transform.position;
                             }
                         }
-                    }
+                    currentController.GetComponent<AudioSource>().clip = audioList[indexAudioList][0];
+                    currentController.GetComponents<AudioSource>()[0].Play();
+                }
+                
 
 
-                    if (controller.GetAxis(touchPad).y > 0.5f) //up 
+                if (controller.GetAxis(touchPad).y > 0.5f) //up 
                     {
                         saveCircle();
                         possibilityCounter++;

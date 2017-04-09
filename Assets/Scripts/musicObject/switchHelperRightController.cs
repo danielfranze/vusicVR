@@ -47,6 +47,9 @@ namespace helper
             }
             GameObject.FindWithTag("mainRightController").GetComponent<rightController>().changeColorControllerSphere();
             GameObject.Find("invisSphere").transform.position = GameObject.Find("SphereRot0").transform.position;
+
+            GameObject.FindWithTag("mainRightController").GetComponent<AudioSource>().clip = GetComponent<rightController>().getAudioClip();
+            GameObject.FindWithTag("mainRightController").GetComponents<AudioSource>()[0].Play();
         }
 
         public void rightSwitcherIfSwipe()
@@ -72,6 +75,8 @@ namespace helper
                 }
             }
             GameObject.FindWithTag("mainRightController").GetComponent<rightController>().changeColorControllerSphere();
+            GameObject.FindWithTag("mainRightController").GetComponent<AudioSource>().clip = GetComponent<rightController>().getAudioClip();
+            GameObject.FindWithTag("mainRightController").GetComponents<AudioSource>()[0].Play();
         }
 
     }

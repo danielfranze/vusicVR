@@ -1,39 +1,34 @@
 fileFormatVersion: 2
-guid: ad17717485ed4374887bffdfc429bfa8
-timeCreated: 1485539635
+guid: c641362693a105c41b05158792bcad57
+timeCreated: 1487578910
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: CINEMA_4D_Editor
     100002: "Deckfl\xE4che_1"
-    100004: "Deckfl\xE4che_1_2"
-    100006: "Deckfl\xE4che_2"
-    100008: "Deckfl\xE4che_2_2"
-    100010: //RootNode
-    100012: Sweep_4
+    100004: "Deckfl\xE4che_2"
+    100006: "Deckfl\xE4che_2_2"
+    100008: //RootNode
+    100010: Sweep_4
     400000: CINEMA_4D_Editor
     400002: "Deckfl\xE4che_1"
-    400004: "Deckfl\xE4che_1_2"
-    400006: "Deckfl\xE4che_2"
-    400008: "Deckfl\xE4che_2_2"
-    400010: //RootNode
-    400012: Sweep_4
+    400004: "Deckfl\xE4che_2"
+    400006: "Deckfl\xE4che_2_2"
+    400008: //RootNode
+    400010: Sweep_4
     2300000: "Deckfl\xE4che_1"
-    2300002: "Deckfl\xE4che_1_2"
-    2300004: "Deckfl\xE4che_2"
-    2300006: "Deckfl\xE4che_2_2"
-    2300008: Sweep_4
+    2300002: "Deckfl\xE4che_2"
+    2300004: "Deckfl\xE4che_2_2"
+    2300006: Sweep_4
     3300000: "Deckfl\xE4che_1"
-    3300002: "Deckfl\xE4che_1_2"
-    3300004: "Deckfl\xE4che_2"
-    3300006: "Deckfl\xE4che_2_2"
-    3300008: Sweep_4
+    3300002: "Deckfl\xE4che_2"
+    3300004: "Deckfl\xE4che_2_2"
+    3300006: Sweep_4
     4300000: Sweep_4
     4300002: "Deckfl\xE4che_1"
     4300004: "Deckfl\xE4che_2"
-    4300006: "Deckfl\xE4che_1_2"
-    4300008: "Deckfl\xE4che_2_2"
+    4300006: "Deckfl\xE4che_2_2"
     9500000: //RootNode
   materials:
     importMaterials: 1

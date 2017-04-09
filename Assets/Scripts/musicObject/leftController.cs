@@ -10,6 +10,8 @@ public class leftController : MonoBehaviour
     private Valve.VR.EVRButtonId touchPad;
     private SteamVR_TrackedObject trackedObject;
     private bool rec = false;
+
+    public GameObject recorder;
     // Use this for initialization
 
     void Start ()
@@ -22,6 +24,10 @@ public class leftController : MonoBehaviour
         //controller = SteamVR_Controller.Input((int)trackedObject.index);
         device = GetComponent<SteamVR_TrackedController>();
         device.TriggerClicked += TriggerClicked;
+
+
+        recorder = GameObject.Find("recorderSphere");
+        recorder.SetActive(false);
 
     }
 
@@ -66,6 +72,9 @@ public class leftController : MonoBehaviour
 
     void TriggerClicked(object sender, ClickedEventArgs e)
     {
+
+        GameObject.Find("Camera (ears)").GetComponent<SaveAsWave>().isTriggered = true;
+        /*
         Debug.Log("TRIGGER");
         
         if(rec == false)
@@ -79,10 +88,7 @@ public class leftController : MonoBehaviour
             SavWav.Save("myfile", myAudioClip);
             rec = false;
 
-        }
-
-
-
+        }*/
 
     }
 }

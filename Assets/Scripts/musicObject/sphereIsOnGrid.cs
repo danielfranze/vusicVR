@@ -25,8 +25,21 @@ public class sphereIsOnGrid : MonoBehaviour
         {
             return currentGrid.transform.position[position];
         }
-        
-        
+
+        public float getTransformRotationX()
+        {
+            return currentGrid.transform.rotation.x;
+        }
+        public float getTransformRotationY()
+        {
+            return currentGrid.transform.rotation.y;
+        }
+        public float getTransformRotationZ()
+        {
+            return currentGrid.transform.rotation.z;
+        }
+
+
         public bool getSphereCreater()
         {
             return sphereCreater;
