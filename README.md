@@ -7,7 +7,7 @@ See also: https://en.wikipedia.org/wiki/Mixing_console.
 Requirements
 --------------------
 
-- Unity 5.4.x or above
+- Unity 5.5.x or above
 - SteamVR
 - HTC Vive (virtual reality headset)
 
