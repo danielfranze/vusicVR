@@ -14,7 +14,7 @@ Requirements
 Installation
 --------------------
 
-1. Open an run the project with Unity3d
+1. Open and run the project with Unity3d
 
 Technologies
 ----------------------
