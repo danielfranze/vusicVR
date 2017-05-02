@@ -6,8 +6,10 @@ See also: https://en.wikipedia.org/wiki/Mixing_console.
 
 Preview
 --------------------
-![](Assets/screenshots/ingame.jpg)
-![](Assets/screenshots/inunity3d.jpg)
+
+HTC Vive                            |  Unity3d
+:----------------------------------:|:---------------------------------:
+![](Assets/screenshots/ingame.jpg)  |  ![](Assets/screenshots/inunity3d.jpg)
 
 Requirements
 --------------------
