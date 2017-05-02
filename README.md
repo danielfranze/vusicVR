@@ -26,7 +26,7 @@ Installation
 Technologies
 ----------------------
 
-![](Assets/icons/csharp.png)
+![](Assets/icons/visualcsharp.png)
 ![](Assets/icons/unity3d.png)
 ![](Assets/icons/steam.png)
 ![](Assets/icons/vive.png)
