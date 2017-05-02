@@ -4,6 +4,11 @@ vusicVR is a music and paint learning program for the [HTC Vive](https://www.viv
 
 See also: https://en.wikipedia.org/wiki/Mixing_console.
 
+Preview
+--------------------
+![](Assets/screenshots/ingame.jpg)
+![](Assets/screenshots/inunity3d.jpg)
+
 Requirements
 --------------------
 
