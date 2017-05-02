@@ -9,6 +9,7 @@ Requirements
 
 - Unity 5.4.x or above
 - SteamVR
+- HTC Vive (virtual reality headset)
 
 Installation
 --------------------
