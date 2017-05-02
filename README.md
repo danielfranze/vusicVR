@@ -18,10 +18,11 @@ Installation
 Technologies
 ----------------------
 
-![](Assets/icons/c#.png)
+![](Assets/icons/csharp.png)
 ![](Assets/icons/unity3d.png)
-![](Assets/icons/vive.png)
 ![](Assets/icons/steam.png)
+![](Assets/icons/vive.png)
+
 
 License
 -------
